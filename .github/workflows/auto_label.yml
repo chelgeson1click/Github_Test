@@ -2,7 +2,7 @@ name: Auto-Label Issue From Title
 
 on:
   issues:
-    types: [opened, edited]
+    types: [opened]
 
 jobs: 
   auto_label:
@@ -17,7 +17,7 @@ jobs:
           case "$ISSUE_TITLE" in 
             *Components*)
               echo "Adding React and Javascript labels to issue"
-              LABELS="React, Javascript"
+              LABELS="React,Javascript"
               ;;
             *DevOps* | *"Dev Ops"*)
               echo "Adding Dev Ops label to issue"
