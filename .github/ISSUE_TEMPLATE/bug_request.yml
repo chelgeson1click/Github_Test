@@ -6,8 +6,8 @@ body:
     attributes: 
       label: Resources 
       value: |
-        **Related Issues**:
-        **Related PRs**:
+        "**Related Issues**:
+        **Related PRs**:"
   - type: textarea
     id: description
     attributes:
@@ -33,14 +33,6 @@ body:
       description: If applicable, add screenshots to help explain your problem (drag and drop the image).
     validations:
       required: false
-  - type: input
-    id: version
-    attributes:
-      label: Version
-      description: What version of the library are you using?
-      placeholder: r
-    validations:
-      required: true
   - type: dropdown
     id: browser
     attributes:
