@@ -7,25 +7,31 @@ on:
 jobs: 
   auto_label:
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
     steps:
-      - name: Assign label to issue based on issue title.
+      - name: Assign labels from titles.
         run: |
           ISSUE_TITLE="${{ github.event.issue.title }}"
-          Labels=()
+          LABELS=""
           case "$ISSUE_TITLE" in 
             *Components*)
               echo "Adding React and Javascript labels to issue"
-              Labels+=('React', 'Javascript')
+              LABELS="React, Javascript"
               ;;
             *DevOps* | *"Dev Ops"*)
               echo "Adding Dev Ops label to issue"
-              Labels+=('Dev Ops')
+              LABELS="Dev Ops"
               ;;
             esac
-            if [[ -n "$LABEL" ]]; then
-              curl -X POST -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-              -H "Accept: application/vnd.github.v3+json" \
-              https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/labels \
-              -d "{\"labels\":[\"$LABEL\"]}"
-            fi
-            
+
+            echo "LABELS=$LABELS" >> $GITHUB_ENV
+      - name: Apply label to issue.
+        if: env.LABELS != ''
+        run: gh issue edit "$NUMBER" --add-label "$LABELS"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          NUMBER: ${{ github.event.issue.number }}
+          LABELS: ${{ env.LABELS }}
+         
