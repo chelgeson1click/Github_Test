@@ -17,7 +17,7 @@ jobs:
               echo "Adding React and Javascript labels to issue"
               Labels+=('React', 'Javascript')
               ;;
-            *DevOps* | *Dev Ops*)
+            *DevOps* | *"Dev Ops"*)
               echo "Adding Dev Ops label to issue"
               Labels+=('Dev Ops')
               ;;
