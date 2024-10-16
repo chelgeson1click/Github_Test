@@ -14,13 +14,13 @@ body:
     id: description
     attributes:
       label: Description
-      description: A clear and concise description of what the bug is.
+      description: An analysis of the data being updated and the reasons for updating it.
     validations:
       required: true
   - type: textarea
-    id: dataLocation
+    id: dataValidation
     attributes:
-      label: Data Location
-      description: Indicate where the data is located.
+      label: Data Validation
+      description: If necessary, describe how the data was validated.
     validations:
-      required: true
+      required: false
