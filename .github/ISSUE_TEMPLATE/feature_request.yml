@@ -1,12 +1,13 @@
 name: Feature request
 description: Suggest an idea for the project.
+label
 body:
   - type: textarea
     id: graph
     attributes: 
       value: |
-      **Related Issues**:
-      **Related PRs**: 
+        **Related Issues**:
+        **Related PRs**: 
   - type: textarea
     id: description
     attributes:

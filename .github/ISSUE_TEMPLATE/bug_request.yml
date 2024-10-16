@@ -1,12 +1,15 @@
 name: Bug Report
 description: File a reproducible bug or regression.
+labels: ['bug']
+title: "[Bug Report]"
 body:
   - type: textarea
     id: graph
     attributes: 
       label: Resources 
-      value: |
-        {{#include .github/ISSUE_TEMPLATE/related.md}}
+      value: | 
+        Related Issues:
+        Related PRs:
   - type: textarea
     id: description
     attributes:
