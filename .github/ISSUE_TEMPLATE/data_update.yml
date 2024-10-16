@@ -1,6 +1,6 @@
 name: Data Update
 description: Update data values within the repository.
-labels: ['update']
+labels: ['Update']
 title: "Data Update - "
 body:
   - type: textarea

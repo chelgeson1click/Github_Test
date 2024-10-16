@@ -1,5 +1,6 @@
 name: Feature request
 description: Suggest an idea for the project.
+labels: ['Feature']
 body:
   - type: textarea
     id: graph
