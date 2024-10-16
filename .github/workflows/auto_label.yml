@@ -26,6 +26,7 @@ jobs:
             *Documentation*)
               echo "Adding Documentation label to issue" 
               LABELS="Documentation"
+              ;;
             esac
 
             echo "LABELS=$LABELS" >> $GITHUB_ENV
