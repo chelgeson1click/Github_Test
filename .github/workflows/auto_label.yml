@@ -16,15 +16,15 @@ jobs:
           LABELS=""
           case "$ISSUE_TITLE" in 
             *Components*)
-              echo "Adding React and Javascript labels to issue"
+              echo "Adding React and Javascript labels to issue."
               LABELS="React,Javascript"
               ;;
             *DevOps* | *"Dev Ops"*)
-              echo "Adding Dev Ops label to issue"
+              echo "Adding Dev Ops label to issue."
               LABELS="Dev Ops"
               ;;
             *Documentation*)
-              echo "Adding Documentation label to issue" 
+              echo "Adding Documentation label to issue." 
               LABELS="Documentation"
               ;;
             esac
