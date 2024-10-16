@@ -3,5 +3,7 @@
 ### Automatic Labeling ###
 Issues with these words in the title will be automatically assigned the following labels. 
 
-| Syntax | Description |
-| Test   | Yo          |
+| Title      | Assigned Label        |
+| ---------- | --------------------- |   
+| Components | 'React', 'Javascript' | 
+| Dev Ops    | 'Dev Ops'             |
