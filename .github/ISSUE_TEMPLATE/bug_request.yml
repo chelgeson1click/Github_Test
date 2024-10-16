@@ -6,8 +6,7 @@ body:
     attributes: 
       label: Resources 
       value: |
-        "**Related Issues**:
-        **Related PRs**:"
+        {{#include .github/ISSUE_TEMPLATE/related.md}}
   - type: textarea
     id: description
     attributes:
