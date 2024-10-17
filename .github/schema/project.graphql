@@ -1,0 +1,5 @@
+query($org: String!, $number: Int!) {
+    organization {
+        announcement
+    }
+}

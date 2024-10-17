@@ -1,0 +1,3 @@
+*.env
+githubSchema.graphql
+node_modules
