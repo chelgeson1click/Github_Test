@@ -38,15 +38,5 @@ jobs:
           GH_REPO: ${{ github.repository }}
           NUMBER: ${{ github.event.issue.number }}
           LABELS: ${{ env.LABELS }}
-  assign_to_project:
-    runs-on: ubuntu-latest
-    permissions: 
-      issues: write
-    steps: 
-      - name: Get project enviornment variables.
-        env:
-          ORGANIZATION: chelgeson1click
-          PROJECT_NUMBER: 2
-          GH_TOKEN: ${{ secrets.PROJECT_PAT_TOKEN }}
 
          

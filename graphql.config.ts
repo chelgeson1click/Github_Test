@@ -5,5 +5,5 @@ dotenv.config();
 
 export default {
   schema: 'githubSchema.graphql',
-  documents: './*.{graphql,ts}',
+  documents: './*.{graphql,ts,yml}',
 } satisfies IGraphQLConfig;

@@ -1,0 +1,40 @@
+name: Add Assignment Date to Project
+
+on:
+  issues:
+    types: [assigned]
+
+jobs: 
+  auto_project:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Project Data.
+        env:
+          ORGANIZATION: chelgeson1click
+          PROJECT_NUMBER: 2
+          GH_TOKEN: ${{ secrets.PROJECT_PAT_TOKEN }}
+          GET_PROJECT_INFO_QUERY: '
+            query($org: String!, $number: Int!) {
+              organization(login: $org) {
+                projectV2(number: $number) {
+                  id
+                  fields(first: 20) {
+                    nodes {
+                      ... on ProjectV2Field {
+                        id
+                        name
+                      }
+                      ... on ProjectV2SingleSelectField {
+                        id
+                        name
+                        options {
+                          id
+                          name
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }'
+        run: gh api graphql -f query=$GET_PROJECT_INFO_QUERY -f org=$ORGANIZATION -F number=$PROJECT_NUMBER > project_data.json
