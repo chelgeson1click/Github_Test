@@ -13,4 +13,4 @@ jobs:
           ORGANIZATION: chelgeson1click
           PROJECT_NUMBER: 2
           GH_TOKEN: ${{ secrets.PROJECT_PAT_TOKEN }}
-        run: gh api graphql -f query="$(cat getProjectInfo.graphql)" -f org=$ORGANIZATION -F number=$PROJECT_NUMBER > project_data.json
+        run: gh api graphql -f query="$(cat .github/schema/getProjectInfo.graphql)" -f org=$ORGANIZATION -F number=$PROJECT_NUMBER > project_data.json
