@@ -52,6 +52,15 @@ jobs:
           cat test_data.json
           getProjectItemID test_data.json 'PROJECT_ITEM_ID'
           echo $PROJECT_ITEM_ID
+      - name: Assign date to issue item in project.
+        env:
+          GH_TOKEN: ${{ secrets.PROJECT_PAT_TOKEN }}
+        run: |
+          source ${SCRIPT_PATH}/projectWorkflow.sh
+
+          runGraphQLMutation 'addAssignDateToProjectItem' add_project.json "$PROJECT_ID" "$PROJECT_ITEM_ID" "$ASSIGNMENT_DATE_ID" "$DATE"
+          cat add_project.json
+
 
 
 
