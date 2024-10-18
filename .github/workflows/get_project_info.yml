@@ -24,5 +24,9 @@ jobs:
           echo 'STATUS_FIELD_ID='$(jq '.data.user.projectV2.fields.nodes[] | select(.name== "Status") | .id' project_data.json) >> $GITHUB_ENV
           echo 'TODO_OPTION_ID='$(jq '.data.user.projectV2.fields.nodes[] | select(.name== "Todo") | .options[] | select(.name=="Todo") |.id' project_data.json) >> $GITHUB_ENV
       - name: Validate project variables.
-        run: echo $PROJECT_ID
+        run: |
+          echo $PROJECT_ID
+          echo $DATE_FIELD_ID
+          echo $STATUS_FIELD_ID
+          echo $TODO_OPTION_ID
 
