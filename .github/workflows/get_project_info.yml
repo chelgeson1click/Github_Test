@@ -36,6 +36,20 @@ jobs:
           echo $STATUS_FIELD_ID
           echo $ASSIGNMENT_DATE_ID
           echo $DATE
+      - name: Add issue to project.
+        env:
+          GH_TOKEN: ${{ secrets.YOUR_TOKEN }}
+          ITEM_ID: ${{ github.event.issue.node_id }}
+        run: |
+          item_id="$( gh api graphql -f query='
+            mutation($project:ID!, $pr:ID!) {
+              addProjectV2ItemById(input: {projectId: $project, contentId: $item}) {
+                item {
+                  id
+                }
+              }
+            }' -f project=$PROJECT_ID -f item=$ITEM_ID
+
 
 
           
