@@ -15,8 +15,22 @@ getProjectVariableID() {
 testQueryFunc() {
   local graphqlFileName=$1
 
-  query_line=$(grep '^query' ./.github/schema/${graphqlFileName}.graphql)
+  query_line=$(grep -m 1 '^query' ./.github/schema/${graphqlFileName}.graphql)
 
   echo $query_line
 
 }
+
+runGraphQLMutation() {
+
+  local graphqlFileName=$1
+  # local mutationOutput=$2
+
+  mutationLine=$(grep -m 1 '^query' ./.github/schema/${graphqlFileName}.graphql)
+
+  vars=$(echo ${mutationLine} | grep -oP '(?<=\$)\w*(?=\:)')
+
+  echo $vars
+
+}
+

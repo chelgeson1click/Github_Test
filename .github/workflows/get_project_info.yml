@@ -57,7 +57,7 @@ jobs:
               }
             }' -f project=$PROJECT_ID -f item=$ITEM_ID
           
-          testQueryFunc 'getProjectInfo'
+          runGraphQLMutation 'addIssueToProject'
 
 
 
