@@ -11,6 +11,8 @@ runGraphQLQuery() {
 
   vars=$(echo ${queryLine} | grep -oP -e '(?<=\$)\w*(?=\:)')
 
+  echo "test"
+
   if [ -n "$vars" ]; then
     echo "Variables found"
 
