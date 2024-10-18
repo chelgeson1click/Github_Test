@@ -41,6 +41,8 @@ jobs:
           GH_TOKEN: ${{ secrets.PROJECT_PAT_TOKEN }}
           ITEM_ID: ${{ github.event.issue.node_id }}
         run: |
+          source ${SCRIPT_PATH}/projectWorkflow.sh
+          
           gh api graphql -f query='
             mutation($project:ID!, $item:ID!) {
               addProjectV2ItemById(input: {projectId: $project, contentId: $item}) {
@@ -50,7 +52,7 @@ jobs:
               }
             }' -f project=$PROJECT_ID -f item=$ITEM_ID
           
-          testQueryFunc 'getProjectInfo' 'test_data.json'
+          testQueryFunc 'getProjectInfo'
 
 
 
