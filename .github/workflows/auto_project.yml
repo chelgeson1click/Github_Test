@@ -8,6 +8,10 @@ jobs:
   auto_project:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code.
+        uses: actions/checkout@v4
+        with: 
+          sparse-checkout: .github
       - name: Get Project Data.
         env:
           ORGANIZATION: chelgeson1click
