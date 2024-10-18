@@ -38,7 +38,7 @@ jobs:
           echo $DATE
       - name: Add issue to project.
         env:
-          GH_TOKEN: ${{ secrets.YOUR_TOKEN }}
+          GH_TOKEN: ${{ secrets.PROJECT_PAT_TOKEN }}
           ITEM_ID: ${{ github.event.issue.node_id }}
         run: |
           gh api graphql -f query='
