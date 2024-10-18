@@ -1,0 +1,1 @@
+gh api graphql -f query="$(cat ./.github/schema/${1}.graphql)" > ${2}

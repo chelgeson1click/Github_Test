@@ -26,7 +26,7 @@ jobs:
           }
 
           run_graphql_query 'getProjectInfo' 'project_data.json'
-          gh api graphql -f query="$(cat ./.github/schema/getProjectInfo.graphql)" > project_data.json
+          # gh api graphql -f query="$(cat ./.github/schema/getProjectInfo.graphql)" > project_data.json
           cat project_data.json
 
           get_project_var_id() {
