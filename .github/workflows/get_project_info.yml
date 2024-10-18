@@ -22,17 +22,18 @@ jobs:
           cat project_data.json
 
           get_project_var_id() {
-            local key=$1
-            local nameQuery=$2
-            local value=$(jq '.data.user.projectV2.fields.nodes[] | select(.name== ${nameQuery}) | .id' project_data.json)
-            echo "${key}=${value}" >> $GITHUB_ENV
+            local envVarName=$1
+            local fieldVarName=$2
+
+            local field_id=$(jq ".data.user.projectV2.fields.nodes[] | select(.name==\"${fieldVarName}\") | .id" project_data.json)
+            echo "${envVarName}=${field_id}" >> $GITHUB_ENV
           }
 
           echo 'PROJECT_ID='$(jq '.data.user.projectV2.id' project_data.json) >> $GITHUB_ENV
           echo 'DATE_FIELD_ID='$(jq '.data.user.projectV2.fields.nodes[] | select(.name== "Date posted") | .id' project_data.json) >> $GITHUB_ENV
           echo 'STATUS_FIELD_ID='$(jq '.data.user.projectV2.fields.nodes[] | select(.name== "Status") | .id' project_data.json) >> $GITHUB_ENV
           echo 'TODO_OPTION_ID='$(jq '.data.user.projectV2.fields.nodes[] | select(.name== "Todo") | .options[] | select(.name=="Todo") |.id' project_data.json) >> $GITHUB_ENV
-          get_var_id_from_project 'ASSIGNMENT_DATE_ID' "Assigned Date"
+          get_project_var_id 'ASSIGNMENT_DATE_ID' 'Assigned Date'
       - name: Validate project variables.
         run: |
           echo $PROJECT_ID
