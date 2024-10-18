@@ -11,3 +11,13 @@ getProjectVariableID() {
   local field_id=$(jq ".data.user.projectV2.fields.nodes[] | select(.name==\"${fieldVarName}\") | .id" project_data.json)
   echo "${envVarName}=${field_id}" >> $GITHUB_ENV
 }
+
+testQueryFunc() {
+  local graphqlFileName=$1
+  local queryOutput=$2
+
+  query_line=$(grep '^query' ${graphqlFileName}.graphql)
+
+  echo $query_line
+
+}
