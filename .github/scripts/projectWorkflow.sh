@@ -26,7 +26,7 @@ runGraphQLMutation() {
   local graphqlFileName=$1
   # local mutationOutput=$2
 
-  mutationLine=$(grep -m 1 '^query' ./.github/schema/${graphqlFileName}.graphql)
+  mutationLine=$(grep -m 1 '^mutation' ./.github/schema/${graphqlFileName}.graphql)
   echo $mutationLine
 
   vars=$(echo ${mutationLine} | grep -o '(?<=\$)\w*(?=\:)')
