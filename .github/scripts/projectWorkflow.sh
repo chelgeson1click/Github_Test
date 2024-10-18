@@ -50,5 +50,7 @@ runGraphQLMutation() {
 
   echo $mutationCommand
 
+  eval $mutationCommand
+
 }
 
