@@ -1,5 +1,23 @@
 query {
   user(login: "chelgeson1click") {
-    id
+    projectV2(number: 2) {
+      id
+      fields(first: 20) {
+        nodes {
+          ... on ProjectV2Field {
+            id
+            name
+          }
+          ... on ProjectV2SingleSelectField {
+            id
+            name
+            options {
+              id
+              name
+            }
+          }
+        }
+      }
+    }
   }
 }
