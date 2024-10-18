@@ -57,7 +57,7 @@ jobs:
               }
             }' -f project=$PROJECT_ID -f item=$ITEM_ID
           
-          runGraphQLMutation 'addIssueToProject' test_data.json 'PROJECT_ID' 'ITEM_ID'
+          runGraphQLMutation 'addIssueToProject' test_data.json "$PROJECT_ID' '$ITEM_ID'
           cat test_data.json
 
 

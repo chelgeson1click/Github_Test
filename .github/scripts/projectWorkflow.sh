@@ -44,7 +44,7 @@ runGraphQLMutation() {
 
   echo $queryArgString
 
-  mutationPrefix="gh api graphql -f query=\"\$(cat ./.github/schema/\${graphqlFileName}.graphql)"
+  mutationPrefix="gh api graphql -f query=\"\$(cat ./.github/schema/\${graphqlFileName}.graphql)\""
 
   mutationCommand="${mutationPrefix} ${queryArgString} > ${mutationOutput}"
 
