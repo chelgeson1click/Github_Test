@@ -29,7 +29,7 @@ runGraphQLMutation() {
   mutationLine=$(grep -m 1 '^mutation' ./.github/schema/${graphqlFileName}.graphql)
   echo $mutationLine
 
-  vars=$(echo ${mutationLine} | grep -o '(?<=\$)\w*(?=\:)')
+  vars=$(echo ${mutationLine} | grep -o -e '(?<=\$)\w*(?=\:)')
 
   echo $vars
 
