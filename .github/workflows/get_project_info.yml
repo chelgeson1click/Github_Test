@@ -18,6 +18,14 @@ jobs:
           PROJECT_NUMBER: 2
           GH_TOKEN: ${{ secrets.PROJECT_PAT_TOKEN }}
         run: |
+
+          run_graphql_query() {
+            local graphqlFileName=$1
+            local queryOutput=$2
+            gh api graphql -f query="$(cat ./.github/schema/${graphqlFileName}.graphql)" > ${queryOutput}
+          }
+
+          run_graphql_query 'getProjectInfo' 'project_data.json'
           gh api graphql -f query="$(cat ./.github/schema/getProjectInfo.graphql)" > project_data.json
           cat project_data.json
 
@@ -28,17 +36,19 @@ jobs:
             local field_id=$(jq ".data.user.projectV2.fields.nodes[] | select(.name==\"${fieldVarName}\") | .id" project_data.json)
             echo "${envVarName}=${field_id}" >> $GITHUB_ENV
           }
-
+          
           echo 'PROJECT_ID='$(jq '.data.user.projectV2.id' project_data.json) >> $GITHUB_ENV
-          echo 'DATE_FIELD_ID='$(jq '.data.user.projectV2.fields.nodes[] | select(.name== "Date posted") | .id' project_data.json) >> $GITHUB_ENV
-          echo 'STATUS_FIELD_ID='$(jq '.data.user.projectV2.fields.nodes[] | select(.name== "Status") | .id' project_data.json) >> $GITHUB_ENV
-          echo 'TODO_OPTION_ID='$(jq '.data.user.projectV2.fields.nodes[] | select(.name== "Todo") | .options[] | select(.name=="Todo") |.id' project_data.json) >> $GITHUB_ENV
+          get_project_var_id 'STATUS_FIELD_ID' 'Status'
           get_project_var_id 'ASSIGNMENT_DATE_ID' 'Assigned Date'
+          echo "DATE=$(date +"%Y-%m-%d")" >> $GITHUB_ENV
+          
       - name: Validate project variables.
         run: |
           echo $PROJECT_ID
-          echo $DATE_FIELD_ID
           echo $STATUS_FIELD_ID
-          echo $TODO_OPTION_ID
           echo $ASSIGNMENT_DATE_ID
+          echo $DATE
+
+
+          
 

@@ -1,0 +1,8 @@
+
+mutation($PROJECT_ID:ID!, $ITEM_ID:ID!) {
+  addProjectV2ItemById(input: {projectId: $PROJECT_ID, contentId: $ITEM_ID}) {
+    item {
+      id
+    }
+  }
+}
