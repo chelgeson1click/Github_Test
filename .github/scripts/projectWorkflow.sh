@@ -39,6 +39,15 @@ getProjectVariableID() {
   echo "${envVarName}=${field_id}" >> $GITHUB_ENV
 }
 
+getProjectItemID() {
+
+  local fromOutputFile=$1
+  local envVarName=$2
+  local field_id=$(jq ".data.addProjectV2ItemById.item.id" ${fromOutputFile})
+  echo "${envVarName}=${field_id}" >> $GITHUB_ENV
+
+}
+
 runGraphQLMutation() {
 
   local graphqlFileName=$1

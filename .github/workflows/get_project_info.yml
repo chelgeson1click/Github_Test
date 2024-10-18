@@ -50,6 +50,8 @@ jobs:
           
           runGraphQLMutation 'addIssueToProject' test_data.json "$PROJECT_ID" "$ITEM_ID"
           cat test_data.json
+          getProjectItemID test_data.json 'PROJECT_ITEM_ID'
+          echo $PROJECT_ITEM_ID
 
 
 
