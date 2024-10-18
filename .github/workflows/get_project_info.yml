@@ -20,7 +20,9 @@ jobs:
           SCRIPT_PATH: './.github/scripts/'
         run: |
 
-          bash ${SCRIPT_PATH}/runGraphQLQuery.sh 'getProjectInfo' 'project_data.json'
+          source ${SCRIPT_PATH}/projectWorkflow.sh
+
+          runGraphQLQuery 'getProjectInfo' 'project_data.json'
           cat project_data.json
 
           get_project_var_id() {
