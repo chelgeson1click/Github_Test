@@ -38,7 +38,7 @@ runGraphQLMutation() {
   queryArgString=""
 
   for var in $vars; do
-    queryArgString="${result} -f ${var}=\$${i}
+    queryArgString="${result} -f ${var}=\$${i}"
   done
 
   echo $queryArgString
