@@ -19,5 +19,5 @@ jobs:
           GH_TOKEN: ${{ secrets.PROJECT_PAT_TOKEN }}
         run: gh api graphql -f query="$(cat ./.github/schema/getProjectInfo.graphql)" > project_data.json
       - name: List files to check if project_data.json was generated.
-        run: echo project_data.json
+        run: cat project_data.json
 
