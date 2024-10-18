@@ -17,17 +17,10 @@ jobs:
           ORGANIZATION: chelgeson1click
           PROJECT_NUMBER: 2
           GH_TOKEN: ${{ secrets.PROJECT_PAT_TOKEN }}
+          SCRIPT_PATH: './.github/scripts/'
         run: |
 
-          run_graphql_query() {
-            local graphqlFileName=$1
-            local queryOutput=$2
-            gh api graphql -f query="$(cat ./.github/schema/${graphqlFileName}.graphql)" > ${queryOutput}
-          }
-
-          bash ./.github/scripts/runGraphQLQuery.sh 'getProjectInfo' 'project_data.json'
-          # run_graphql_query 'getProjectInfo' 'project_data.json'
-          # gh api graphql -f query="$(cat ./.github/schema/getProjectInfo.graphql)" > project_data.json
+          bash ${SCRIPT_PATH}/runGraphQLQuery.sh 'getProjectInfo' 'project_data.json'
           cat project_data.json
 
           get_project_var_id() {
