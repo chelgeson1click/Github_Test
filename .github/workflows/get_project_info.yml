@@ -24,18 +24,10 @@ jobs:
 
           runGraphQLQuery 'getProjectInfo' 'project_data.json'
           cat project_data.json
-
-          get_project_var_id() {
-            local envVarName=$1
-            local fieldVarName=$2
-
-            local field_id=$(jq ".data.user.projectV2.fields.nodes[] | select(.name==\"${fieldVarName}\") | .id" project_data.json)
-            echo "${envVarName}=${field_id}" >> $GITHUB_ENV
-          }
           
           echo 'PROJECT_ID='$(jq '.data.user.projectV2.id' project_data.json) >> $GITHUB_ENV
-          get_project_var_id 'STATUS_FIELD_ID' 'Status'
-          get_project_var_id 'ASSIGNMENT_DATE_ID' 'Assigned Date'
+          getProjectVariableID 'STATUS_FIELD_ID' 'Status'
+          getProjectVariableID 'ASSIGNMENT_DATE_ID' 'Assigned Date'
           echo "DATE=$(date +"%Y-%m-%d")" >> $GITHUB_ENV
           
       - name: Validate project variables.
