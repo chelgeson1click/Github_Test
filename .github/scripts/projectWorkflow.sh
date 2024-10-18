@@ -3,27 +3,35 @@ runGraphQLQuery() {
   local graphqlFileName=$1
   local queryOutput=$2
 
+  queryPrefix="gh api graphql -f query=\"\$(cat ./.github/schema/\${graphqlFileName}.graphql)\""
+  queryCommand=""
+
   queryLine=$(grep -m 1 '^query' ./.github/schema/${graphqlFileName}.graphql)
   echo $queryLine
 
   vars=$(echo ${queryLine} | grep -oP -e '(?<=\$)\w*(?=\:)')
 
-  echo "${vars[*]}"
+  if [ -n "$vars" ]; then
+    echo "Variables found"
 
-  i=3
+    echo "${vars[*]}"
 
-  queryArgString=""
+    i=3
 
-  for var in $vars; do
-    queryArgString="${queryArgString} -f ${var}=\$${i}"
-    ((i++))
-  done
+    queryArgString=""
 
-  echo $queryArgString
+    for var in $vars; do
+      queryArgString="${queryArgString} -f ${var}=\$${i}"
+      ((i++))
+    done
 
-  queryPrefix="gh api graphql -f query=\"\$(cat ./.github/schema/\${graphqlFileName}.graphql)\""
+    echo $queryArgString
 
-  queryCommand="${queryPrefix} ${queryArgString} > ${queryOutput}"
+    queryCommand="${queryPrefix} ${queryArgString} > ${queryOutput}"
+  else
+    echo "No variables needed in this query."
+    queryCommand="${queryPrefix} ${queryArgString} > ${queryOutput}"
+  fi
 
   echo $queryCommand
 
