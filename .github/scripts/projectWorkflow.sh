@@ -1,18 +1,28 @@
+# Run a GraphQL Query from the command line.
 runGraphQLQuery() {
 
+  # Name of the GraphQL Query
   local graphqlFileName=$1
+  # Name of the file to output the query's results.
   local queryOutput=$2
 
+  # Command that calls the GraphQL query from the text file.
   queryPrefix="gh api graphql -f query=\"\$(cat ./.github/schema/\${graphqlFileName}.graphql)\""
   queryCommand=""
 
+  # Search GraphQL file for line that contains query() call.
   queryLine=$(grep -m 1 '^query' ./.github/schema/${graphqlFileName}.graphql)
   echo $queryLine
 
-  vars=$(echo ${queryLine} | grep -oP -e '(?<=\$)\w*(?=\:)')
+  # Search for GraphQL variables and extract the variable names.
+  # When there are none, ensure the grep process does not exit 
+  # with an error code.
+  vars=$(echo ${queryLine} | grep -oP -e '(?<=\$)\w*(?=\:)' || true)
 
   echo "test"
 
+  # When variables exist, construct the command that
+  # applies the arguments to our query.
   if [ -n "$vars" ]; then
     echo "Variables found"
 
@@ -41,7 +51,7 @@ runGraphQLQuery() {
 
 }
 
-
+# Get a Project's unique identifier from a json file.
 getProjectVariableID() {
   local envVarName=$1
   local fieldVarName=$2
@@ -49,6 +59,7 @@ getProjectVariableID() {
   echo "${envVarName}=${field_id}" >> $GITHUB_ENV
 }
 
+# Get a Project Item's unique identifier from a json file.
 getProjectItemID() {
 
   local fromOutputFile=$1
@@ -58,6 +69,7 @@ getProjectItemID() {
 
 }
 
+# Run a GraphQL Mutation from the command line.
 runGraphQLMutation() {
 
   local graphqlFileName=$1
@@ -66,7 +78,7 @@ runGraphQLMutation() {
   mutationLine=$(grep -m 1 '^mutation' ./.github/schema/${graphqlFileName}.graphql)
   echo $mutationLine
 
-  vars=$(echo ${mutationLine} | grep -oP -e '(?<=\$)\w*(?=\:)')
+  vars=$(echo ${mutationLine} | grep -oP -e '(?<=\$)\w*(?=\:)' || true)
 
   echo "${vars[*]}"
 
