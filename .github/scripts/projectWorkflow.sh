@@ -15,7 +15,7 @@ getProjectVariableID() {
 testQueryFunc() {
   local graphqlFileName=$1
 
-  query_line=$(grep '^query' ${graphqlFileName}.graphql)
+  query_line=$(grep '^query' ./.github/schema/${graphqlFileName}.graphql)
 
   echo $query_line
 
