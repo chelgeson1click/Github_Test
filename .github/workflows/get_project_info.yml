@@ -14,14 +14,15 @@ jobs:
           sparse-checkout: .github
       - name: Setup Global Variables
         env:
-          SCRIPT_PATH: './.github/scripts/'
-        run: echo 'SCRIPT_PATH='${SCRIPT_PATH} >> $GITHUB_ENV
+          SCRIPT_PATH: './.github/scripts'
+        run: |
+          echo 'SCRIPT_PATH='${SCRIPT_PATH} >> $GITHUB_ENV
       - name: Get Project Data.
         env:
           ORGANIZATION: chelgeson1click
           PROJECT_NUMBER: 2
           GH_TOKEN: ${{ secrets.PROJECT_PAT_TOKEN }}
-          SCRIPT_PATH: './.github/scripts/'
+          SCRIPT_PATH: './.github/scripts'
         run: |
 
           source ${SCRIPT_PATH}/projectWorkflow.sh
