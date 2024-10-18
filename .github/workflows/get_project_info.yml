@@ -12,6 +12,10 @@ jobs:
         uses: actions/checkout@v4
         with: 
           sparse-checkout: .github
+      - name: Setup Global Variables
+        env:
+          SCRIPT_PATH: './.github/scripts/'
+        run: echo 'SCRIPT_PATH='${SCRIPT_PATH} >> $GITHUB_ENV
       - name: Get Project Data.
         env:
           ORGANIZATION: chelgeson1click
@@ -42,7 +46,7 @@ jobs:
           ITEM_ID: ${{ github.event.issue.node_id }}
         run: |
           source ${SCRIPT_PATH}/projectWorkflow.sh
-          
+
           gh api graphql -f query='
             mutation($project:ID!, $item:ID!) {
               addProjectV2ItemById(input: {projectId: $project, contentId: $item}) {
