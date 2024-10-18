@@ -1,11 +1,6 @@
 
 # addAssignDateToProjectItem.graphql
-mutation(
-    $project: ID!
-    $item: ID!
-    $assignedDateField: ID!
-    $assignedDate: Date!
-) {
+mutation($project: ID!, $item: ID!, $assignedDateField: ID!, $assignedDate: Date!) {
     updateProjectV2ItemFieldValue(input: {
         projectId: $project
         itemId: $item

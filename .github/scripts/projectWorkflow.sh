@@ -75,6 +75,7 @@ runGraphQLMutation() {
   local graphqlFileName=$1
   local mutationOutput=$2
 
+  # NOTE: Update workflow to work with multiline mutation blocks
   mutationLine=$(grep -m 1 '^mutation' ./.github/schema/${graphqlFileName}.graphql)
   echo $mutationLine
 
