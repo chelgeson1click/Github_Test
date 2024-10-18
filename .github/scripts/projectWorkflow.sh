@@ -31,7 +31,7 @@ runGraphQLMutation() {
 
   vars=$(echo ${mutationLine} | grep -oP -e '(?<=\$)\w*(?=\:)')
 
-  echo $vars
+  echo "${vars[*]}"
 
 }
 
