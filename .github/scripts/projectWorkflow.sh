@@ -1,24 +1,42 @@
 runGraphQLQuery() {
+
   local graphqlFileName=$1
   local queryOutput=$2
 
-  gh api graphql -f query="$(cat ./.github/schema/${graphqlFileName}.graphql)" > ${queryOutput}
+  queryLine=$(grep -m 1 '^query' ./.github/schema/${graphqlFileName}.graphql)
+  echo $queryLine
+
+  vars=$(echo ${queryLine} | grep -oP -e '(?<=\$)\w*(?=\:)')
+
+  echo "${vars[*]}"
+
+  i=3
+
+  queryArgString=""
+
+  for var in $vars; do
+    queryArgString="${queryArgString} -f ${var}=\$${i}"
+    ((i++))
+  done
+
+  echo $queryArgString
+
+  queryPrefix="gh api graphql -f query=\"\$(cat ./.github/schema/\${graphqlFileName}.graphql)\""
+
+  queryCommand="${queryPrefix} ${queryArgString} > ${queryOutput}"
+
+  echo $queryCommand
+
+  eval $queryCommand
+
 }
+
 
 getProjectVariableID() {
   local envVarName=$1
   local fieldVarName=$2
   local field_id=$(jq ".data.user.projectV2.fields.nodes[] | select(.name==\"${fieldVarName}\") | .id" project_data.json)
   echo "${envVarName}=${field_id}" >> $GITHUB_ENV
-}
-
-testQueryFunc() {
-  local graphqlFileName=$1
-
-  query_line=$(grep -m 1 '^query' ./.github/schema/${graphqlFileName}.graphql)
-
-  echo $query_line
-
 }
 
 runGraphQLMutation() {
@@ -35,18 +53,18 @@ runGraphQLMutation() {
 
   i=3
 
-  queryArgString=""
+  mutationArgString=""
 
   for var in $vars; do
-    queryArgString="${queryArgString} -f ${var}=\$${i}"
+    mutationArgString="${mutationArgString} -f ${var}=\$${i}"
     ((i++))
   done
 
-  echo $queryArgString
+  echo $mutationArgString
 
   mutationPrefix="gh api graphql -f query=\"\$(cat ./.github/schema/\${graphqlFileName}.graphql)\""
 
-  mutationCommand="${mutationPrefix} ${queryArgString} > ${mutationOutput}"
+  mutationCommand="${mutationPrefix} ${mutationArgString} > ${mutationOutput}"
 
   echo $mutationCommand
 
