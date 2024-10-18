@@ -1,23 +1,5 @@
-query($org: String!, $number: Int!) {
-  user(login: $org) {
-    projectV2(number: $number) {
-      id
-      fields(first: 20) {
-        nodes {
-          ... on ProjectV2Field {
-            id
-            name
-          }
-          ... on ProjectV2SingleSelectField {
-            id
-            name
-            options {
-              id
-              name
-            }
-          }
-        }
-      }
-    }
+query {
+  user(login: "chelgeson1click") {
+    id
   }
 }
