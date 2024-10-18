@@ -24,7 +24,7 @@ testQueryFunc() {
 runGraphQLMutation() {
 
   local graphqlFileName=$1
-  # local mutationOutput=$2
+  local mutationOutput=$2
 
   mutationLine=$(grep -m 1 '^mutation' ./.github/schema/${graphqlFileName}.graphql)
   echo $mutationLine
@@ -43,6 +43,12 @@ runGraphQLMutation() {
   done
 
   echo $queryArgString
+
+  mutationPrefix="gh api graphql -f query=\"\$(cat ./.github/schema/\${graphqlFileName}.graphql)"
+
+  mutationCommand="${mutationPrefix} ${queryArgString} > ${mutationOutput}"
+
+  echo $mutationCommand
 
 }
 
