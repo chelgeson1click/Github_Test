@@ -14,7 +14,6 @@ getProjectVariableID() {
 
 testQueryFunc() {
   local graphqlFileName=$1
-  local queryOutput=$2
 
   query_line=$(grep '^query' ${graphqlFileName}.graphql)
 
