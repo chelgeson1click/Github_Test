@@ -1,5 +1,5 @@
 query($org: String!, $number: Int!) {
-  organization(login: $org) {
+  user(login: $org) {
     projectV2(number: $number) {
       id
       fields(first: 20) {
