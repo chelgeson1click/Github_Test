@@ -47,17 +47,8 @@ jobs:
           ITEM_ID: ${{ github.event.issue.node_id }}
         run: |
           source ${SCRIPT_PATH}/projectWorkflow.sh
-
-          gh api graphql -f query='
-            mutation($project:ID!, $item:ID!) {
-              addProjectV2ItemById(input: {projectId: $project, contentId: $item}) {
-                item {
-                  id
-                }
-              }
-            }' -f project=$PROJECT_ID -f item=$ITEM_ID
           
-          runGraphQLMutation 'addIssueToProject' test_data.json "$PROJECT_ID' '$ITEM_ID'
+          runGraphQLMutation 'addIssueToProject' test_data.json "$PROJECT_ID" "$ITEM_ID"
           cat test_data.json
 
 
