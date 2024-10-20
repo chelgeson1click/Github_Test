@@ -33,6 +33,79 @@ body:
       placeholder: A clear and concise description of any alternative solutions or features you've considered.
     validations:
       required: true
+  - type: markdown
+    attributes:
+      value: "### Please select a date:"
+  - type: dropdown
+    id: month
+    attributes:
+      label: "Month"
+      description: "Select the month"
+      options:
+        - January
+        - February
+        - March
+        - April
+        - May
+        - June
+        - July
+        - August
+        - September
+        - October
+        - November
+        - December
+    validations:
+      required: true
+  - type: dropdown
+    id: day
+    attributes:
+      label: "Day"
+      description: "Select the day"
+      options:
+        - "1"
+        - "2"
+        - "3"
+        - "4"
+        - "5"
+        - "6"
+        - "7"
+        - "8"
+        - "9"
+        - "10"
+        - "11"
+        - "12"
+        - "13"
+        - "14"
+        - "15"
+        - "16"
+        - "17"
+        - "18"
+        - "19"
+        - "20"
+        - "21"
+        - "22"
+        - "23"
+        - "24"
+        - "25"
+        - "26"
+        - "27"
+        - "28"
+        - "29"
+        - "30"
+        - "31"
+    validations:
+      required: true
+  - type: dropdown
+    id: year
+    attributes:
+      label: "Year"
+      description: "Select the year"
+      options:
+        - "2023"
+        - "2024"
+        - "2025"
+    validations:
+      required: true
   - type: textarea
     id: additional
     attributes:

@@ -1,7 +1,7 @@
 blank_issues_enabled: false
 contact_links:
   - name: Issue Template Identifiers
-    url: https://github.com/chelgeson1click/Github_Test/blob/main/.github/ISSUE_TEMPLATE/related.md
+    url: https://github.com/1ClickLogistics-com/WMS-PROD/blob/main/.github/ISSUE_TEMPLATE/related.md
     about: A list of reserved issue template keywords that modify your issue on creation.
   - name: Help and Support
     url: https://1clicklogistics.atlassian.net/wiki/spaces/KB/overview?homepageId=98526
