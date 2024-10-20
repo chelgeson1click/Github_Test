@@ -5,6 +5,37 @@ on:
     types: [opened]
 
 jobs: 
+  assign_due_date: 
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps: 
+      - name: Extract Issue Due Date
+        run: |
+          ISSUE_BODY="${{github.event.issue.body}}"
+          MONTH=$(echo "$ISSUE_BODY" | grep -oP '(?<=Month:\s)(.*)')
+          DAY=$(echo "$ISSUE_BODY" | grep -oP '(?<=Day:\s)(.*)')
+          YEAR=$(echo "$ISSUE_BODY" | grep -oP '(?<=Year:\s)(.*)')
+
+          case "$MONTH" in
+            "January") MONTH_NUM="01" ;;
+            "February") MONTH_NUM="02" ;;
+            "March") MONTH_NUM="03" ;;
+            "April") MONTH_NUM="04" ;;
+            "May") MONTH_NUM="05" ;;
+            "June") MONTH_NUM="06" ;;
+            "July") MONTH_NUM="07" ;;
+            "August") MONTH_NUM="08" ;;
+            "September") MONTH_NUM="09" ;;
+            "October") MONTH_NUM="10" ;;
+            "November") MONTH_NUM="11" ;;
+            "December") MONTH_NUM="12" ;;
+            *) echo "Invalid month"; exit 1 ;;
+          esac
+
+          echo ${MONTH}
+          echo ${DAY}
+          echo ${YEAR}
   auto_label:
     runs-on: ubuntu-latest
     permissions:
