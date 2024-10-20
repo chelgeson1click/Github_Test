@@ -17,6 +17,8 @@ jobs:
           DAY=$(echo "$ISSUE_BODY" | grep -oP '(?<=Day:\s)(.*)')
           YEAR=$(echo "$ISSUE_BODY" | grep -oP '(?<=Year:\s)(.*)')
 
+          echo $MONTH
+
           case "$MONTH" in
             "January") MONTH_NUM="01" ;;
             "February") MONTH_NUM="02" ;;
