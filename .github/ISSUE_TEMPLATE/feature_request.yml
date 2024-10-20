@@ -39,7 +39,6 @@ body:
   - type: dropdown
     id: month
     attributes:
-      label: "Month"
       description: "Select the month"
       options:
         - January
@@ -59,7 +58,6 @@ body:
   - type: dropdown
     id: day
     attributes:
-      label: "Day"
       description: "Select the day"
       options:
         - "1"
@@ -98,7 +96,6 @@ body:
   - type: dropdown
     id: year
     attributes:
-      label: "Year"
       description: "Select the year"
       options:
         - "2023"
