@@ -13,9 +13,9 @@ jobs:
       - name: Extract Issue Due Date
         run: |
           ISSUE_BODY="${{github.event.issue.body}}"
-          MONTH=$(echo "$ISSUE_BODY" | grep -oP '(?<=Month:\s)(.*)')
-          DAY=$(echo "$ISSUE_BODY" | grep -oP '(?<=Day:\s)(.*)')
-          YEAR=$(echo "$ISSUE_BODY" | grep -oP '(?<=Year:\s)(.*)')
+          MONTH=$(echo "$ISSUE_BODY" | grep -oP -e '(?<=Month\s*\n*)(\w*)(?=\s*\n*\#)')
+          DAY=$(echo "$ISSUE_BODY" | grep -oP -e '(?<=Day\s*\n*)(\w*)(?=\s*\n*\#)')
+          YEAR=$(echo "$ISSUE_BODY" | grep -oP -e '(?<=Year\s*\n*)(\w*)(?=\s*\n*\#)')
 
           echo $MONTH
 
