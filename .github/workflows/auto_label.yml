@@ -32,7 +32,7 @@ jobs:
             "October") MONTH_NUM="10" ;;
             "November") MONTH_NUM="11" ;;
             "December") MONTH_NUM="12" ;;
-            *) echo "Invalid month"; exit 1 ;;
+            *) echo "Invalid month";;
           esac
 
           echo ${MONTH}
