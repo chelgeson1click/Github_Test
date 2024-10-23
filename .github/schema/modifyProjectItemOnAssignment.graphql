@@ -13,16 +13,4 @@ mutation ($project: ID!, $item: ID!, $assignedDateField: ID!, $assignedDate: Dat
             id
         }
     }
-    setStatus: updateProjectV2ItemFieldValue(input: {
-        projectId: $project
-        itemId: $item
-        fieldId: $statusField
-        value: {
-            singleSelectOptionId: $statusValue
-        } 
-    }) {
-        projectV2Item {
-            id
-        }
-    }
 }
