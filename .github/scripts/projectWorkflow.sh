@@ -51,6 +51,11 @@ runGraphQLQuery() {
 
 }
 
+
+getProjectID() {
+  echo 'PROJECT_ID='$(jq '.data.user.projectV2.id' project_data.json) >> $GITHUB_ENV
+}
+
 # Get a Project's unique identifier from a json file.
 getProjectVariableID() {
   local envVarName=$1
