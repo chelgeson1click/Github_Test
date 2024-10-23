@@ -53,7 +53,7 @@ jobs:
           cat test_data.json
           getProjectItemID test_data.json 'PROJECT_ITEM_ID'
           echo $PROJECT_ITEM_ID
-      - name: Assign date to issue item in project.
+      - name: Modify issue item's status and assignment date.
         env:
           GH_TOKEN: ${{ secrets.PROJECT_PAT_TOKEN }}
         run: |
