@@ -59,7 +59,7 @@ jobs:
         run: |
           source ${SCRIPT_PATH}/projectWorkflow.sh
 
-          runGraphQLMutation 'modifyProjectItemOnAssignment' add_project.json "$PROJECT_ID" "$PROJECT_ITEM_ID" "$ASSIGNMENT_DATE_ID" "$DATE" "$STATUS_FIELD" $STATUS_VALUE
+          runGraphQLMutation 'modifyProjectItemOnAssignment' add_project.json "$PROJECT_ID" "$PROJECT_ITEM_ID" "$ASSIGNMENT_DATE_ID" "$DATE" "$STATUS_ID" "$STATUS_VALUE"
           cat add_project.json
 
 
