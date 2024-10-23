@@ -31,7 +31,7 @@ jobs:
           cat project_data.json
           
           getProjectID
-          getProjectVariableID 'STATUS_FIELD_ID' 'Status'
+          getProjectVariableID 'STATUS_ID' 'Status'
           getProjectFieldOptionID 'STATUS_VALUE' 'Status' 'Assigned & Pending'
           getProjectVariableID 'ASSIGNMENT_DATE_ID' 'Assigned Date'
           echo "DATE=$(date +"%Y-%m-%d")" >> $GITHUB_ENV
@@ -39,7 +39,7 @@ jobs:
       - name: Validate project variables.
         run: |
           echo $PROJECT_ID
-          echo $STATUS_FIELD_ID
+          echo $STATUS_ID
           echo $ASSIGNMENT_DATE_ID
           echo $DATE
       - name: Add issue to project.
