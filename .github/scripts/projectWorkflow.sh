@@ -59,6 +59,16 @@ getProjectVariableID() {
   echo "${envVarName}=${field_id}" >> $GITHUB_ENV
 }
 
+getProjectFieldOptionID() {
+
+  local envVarName=$1
+  local fieldVarName=$2
+  local optionVarName=$3
+  local field_id=$(jq ".data.organization.projectV2.fields.nodes[] | select(.name==\"${fieldVarName}\") | .options[] | select(.name==\"${optionVarName}\") | .id" project_data.json) >> $GITHUB_ENV
+  echo "${envVarName}=${field_id}" >> $GITHUB_ENV
+
+}
+
 # Get a Project Item's unique identifier from a json file.
 getProjectItemID() {
 
