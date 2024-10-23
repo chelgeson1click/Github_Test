@@ -90,6 +90,9 @@ runGraphQLMutation() {
 
   local graphqlFileName=$1
   local mutationOutput=$2
+  
+  echo "Opening GraphQL Mutation $1"
+  echo "Mutation Arguments":
 
   # NOTE: Update workflow to work with multiline mutation blocks
   mutationLine=$(grep -m 1 '^mutation' ./.github/schema/${graphqlFileName}.graphql)
