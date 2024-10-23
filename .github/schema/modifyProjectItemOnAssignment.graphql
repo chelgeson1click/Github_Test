@@ -1,4 +1,4 @@
-mutation ($project: ID!, $item: ID!, $assignedDateField: ID!, $assignedDate: Date!, $statusField: ID!, $status: ID!) {
+mutation ($project: ID!, $item: ID!, $assignedDateField: ID!, $assignedDate: Date!, $statusField: ID!, $status: String!) {
     setAssignmentDate: updateProjectV2ItemFieldValue(input: {
         projectId: $project
         itemId: $item
