@@ -34,6 +34,7 @@ jobs:
           getProjectVariableID 'STATUS_FIELD_ID' 'Status'
           getProjectVariableID 'ASSIGNMENT_DATE_ID' 'Assigned Date'
           echo "DATE=$(date +"%Y-%m-%d")" >> $GITHUB_ENV
+          echo "STATUS='Assigned and Pending'" >> $GITHUB_ENV
           
       - name: Validate project variables.
         run: |
@@ -58,7 +59,7 @@ jobs:
         run: |
           source ${SCRIPT_PATH}/projectWorkflow.sh
 
-          runGraphQLMutation 'addAssignDateToProjectItem' add_project.json "$PROJECT_ID" "$PROJECT_ITEM_ID" "$ASSIGNMENT_DATE_ID" "$DATE"
+          runGraphQLMutation 'modifyProjectItemOnAssignment' add_project.json "$PROJECT_ID" "$PROJECT_ITEM_ID" "$ASSIGNMENT_DATE_ID" "$DATE"
           cat add_project.json
 
 
