@@ -1,6 +1,6 @@
 name: Bug Report
 description: File a reproducible bug or regression.
-labels: ['Bug']
+labels: ['bug']
 body:
   - type: textarea
     id: graph
@@ -35,23 +35,36 @@ body:
     validations:
       required: false
   - type: dropdown
-    id: browser
+    id: priority
     attributes:
-      label: Browser
-      multiple: true
-      options:
-        - Chrome
-        - Firefox
-        - IE 11
-        - Safari
-        - Edge
+      label: Priority
+      multiple: false
+      options: 
+        - 🌋 Urgent
+        - 🏔 High
+        - 🏕 Medium
+        - 🏝 Low
   - type: dropdown
-    id: os
+    id: size
     attributes:
-      label: OS
-      multiple: true
+      label: Size
+      multiple: false
+      options: 
+        - 🐋 X-Large
+        - 🦑 Large
+        - 🐂 Medium
+        - 🐇 Small
+        - 🦔 Tiny
+  - type: dropdown
+    id: department
+    attributes:
+      label: Department
+      multiple: false
       options:
-        - Windows
-        - MacOS
-        - Linux
-        - ChromeOS
+        - IT 
+        - HR
+        - Finance
+        - Operations
+        - Warehouse
+        - Management
+        - Customer
