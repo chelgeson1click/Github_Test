@@ -32,7 +32,7 @@ jobs:
           
           echo 'PROJECT_ID='$(jq '.data.user.projectV2.id' project_data.json) >> $GITHUB_ENV
           getProjectVariableID 'STATUS_FIELD_ID' 'Status'
-          getProjectFieldOptionID 'STATUS_VALUE' 'Status' 'Assigned and Pending'
+          getProjectFieldOptionID 'STATUS_VALUE' 'Status' 'Assigned & Pending'
           getProjectVariableID 'ASSIGNMENT_DATE_ID' 'Assigned Date'
           echo "DATE=$(date +"%Y-%m-%d")" >> $GITHUB_ENV
           echo "STATUS='Assigned and Pending'" >> $GITHUB_ENV
