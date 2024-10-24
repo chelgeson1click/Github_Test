@@ -76,24 +76,29 @@ jobs:
         run: |
           source ${SCRIPT_PATH}/projectWorkflow.sh
 
-          runGraphQLMutation 'setProjectItemPriority' set_priority.json \
-            "$PROJECT_ID" \
-            "$PROJECT_ITEM_ID" \
-            "$PRIORITY_ID" \
-            "${{env.PRIORITY_OPTION_ID}}"
+          if[ "$PRIORITY" != "None"] then; 
+            runGraphQLMutation 'setProjectItemPriority' set_priority.json \
+              "$PROJECT_ID" \
+              "$PROJECT_ITEM_ID" \
+              "$PRIORITY_ID" \
+              "${{env.PRIORITY_OPTION_ID}}"
+          fi
 
-          runGraphQLMutation 'setProjectItemSize' set_size.json \
-            "$PROJECT_ID" \
-            "$PROJECT_ITEM_ID" \
-            "$SIZE_ID" \
-            "${{env.SIZE_OPTION_ID}}"
+          if[ "$SIZE" != "None"] then; 
+            runGraphQLMutation 'setProjectItemSize' set_size.json \
+              "$PROJECT_ID" \
+              "$PROJECT_ITEM_ID" \
+              "$SIZE_ID" \
+              "${{env.SIZE_OPTION_ID}}"
+          fi
 
-          runGraphQLMutation 'setProjectItemDepartment' set_department.json \
-            "$PROJECT_ID" \
-            "$PROJECT_ITEM_ID" \
-            "$DEPARTMENT_ID" \
-            "${{env.DEPARTMENT_OPTION_ID}}"
-
+          if[ "$DEPARTMENT" != "None"] then; 
+            runGraphQLMutation 'setProjectItemDepartment' set_department.json \
+              "$PROJECT_ID" \
+              "$PROJECT_ITEM_ID" \
+              "$DEPARTMENT_ID" \
+              "${{env.DEPARTMENT_OPTION_ID}}"
+          fi
   auto_label:
     runs-on: ubuntu-latest
     permissions:
