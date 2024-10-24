@@ -56,7 +56,7 @@ jobs:
 
           # Get ID of Department Field and Department Option
           getProjectVariableID 'DEPARTMENT_ID' 'Department'
-          getProjectFieldOptionID 'DEPARTMENT_ID' 'Department' "${DEPARTMENT}"
+          getProjectFieldOptionID 'DEPARTMENT_OPTION_ID' 'Department' "${DEPARTMENT}"
 
       - name: Add issue to project.
         env:
