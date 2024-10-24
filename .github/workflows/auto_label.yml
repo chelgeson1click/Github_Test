@@ -76,6 +76,7 @@ jobs:
         run: |
           source ${SCRIPT_PATH}/projectWorkflow.sh
 
+          # NOTE: THIS IS BAD FIX FOR EMOJI ISSUES!
           LC_ALL=C
 
           if[ "${PRIORITY}" != "None" ]
