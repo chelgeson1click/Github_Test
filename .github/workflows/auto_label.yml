@@ -22,6 +22,12 @@ jobs:
       - name: Debug Issue Body JSON
         run: cat ${HOME}/issue-parser-result.json
 
+      - name: Setup Global Variables
+        env:
+          SCRIPT_PATH: './.github/scripts'
+        run: |
+          echo 'SCRIPT_PATH='${SCRIPT_PATH} >> $GITHUB_ENV
+
       - name: Assign Issue Variables to Environment
         run: |
           echo "PRIORITY=${{steps.issue-parser.outputs.issueparser_priority }}" >> $GITHUB_ENV
