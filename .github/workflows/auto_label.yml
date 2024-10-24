@@ -1,43 +1,93 @@
-name: Auto-Label Issue From Title
+name: Configure Issue on Open
 
 on:
   issues:
     types: [opened]
 
 jobs: 
-  assign_due_date: 
+  assign_issue_parameters: 
     runs-on: ubuntu-latest
     permissions:
       issues: write
-    steps: 
-      - name: Extract Issue Due Date
+    steps:
+      - name: Checkout code.
+        uses: actions/checkout@v4
+        with: 
+          sparse-checkout: .github
+
+      - name: Access Issue Body as JSON
+        uses: stefanbuck/github-issue-parser@v3
+        id: issue-parser
+
+      - name: Debug Issue Body JSON
+        run: cat ${HOME}/issue-parser-result.json
+
+      - name: Assign Issue Variables to Environment
         run: |
-          ISSUE_BODY="${{github.event.issue.body}}"
-          MONTH=$(echo "$ISSUE_BODY" | grep -oP -e '(\w*)(?=\s*\###\sDay)' || date +%B)
-          DAY=$(echo "$ISSUE_BODY" | grep -oP -e '(\w*)(?=\s*\###\Year)' || date +%d)
-          YEAR=$(echo "$ISSUE_BODY" | grep -oP -e '(\w*)(?=\s*\###\sAdd)' || date +%Y)
+          echo "PRIORITY=${{steps.issue-parser.outputs.issueparser_priority }}" >> $GITHUB_ENV
+          echo "SIZE=${{steps.issue-parser.outputs.issueparser_size }}" >> $GITHUB_ENV
+          echo "DEPARTMENT=${{steps.issue-parser.outputs.issueparser_department }}" >> $GITHUB_ENV
+      - name: Get Project Data.
+        env:
+          GH_TOKEN: ${{ secrets.PROJECT_PAT_TOKEN }}
+          SCRIPT_PATH: './.github/scripts'
+        run: |
+          source ${SCRIPT_PATH}/projectWorkflow.sh
 
-          echo $MONTH
+          runGraphQLQuery 'getProjectInfo' 'project_data.json'
+          cat project_data.json
+          
+          # Get project id in PROJECT_ID
+          getProjectID
+          
+          # Get ID of Priority Field and Priority Option
+          getProjectVariableID 'PRIORITY_ID' 'Priority'
+          getProjectFieldOptionID 'PRIORITY_OPTION_ID' 'Priority' "${PRIORITY}"
 
-          case "$MONTH" in
-            "January") MONTH_NUM="01" ;;
-            "February") MONTH_NUM="02" ;;
-            "March") MONTH_NUM="03" ;;
-            "April") MONTH_NUM="04" ;;
-            "May") MONTH_NUM="05" ;;
-            "June") MONTH_NUM="06" ;;
-            "July") MONTH_NUM="07" ;;
-            "August") MONTH_NUM="08" ;;
-            "September") MONTH_NUM="09" ;;
-            "October") MONTH_NUM="10" ;;
-            "November") MONTH_NUM="11" ;;
-            "December") MONTH_NUM="12" ;;
-            *) echo "Invalid month";;
-          esac
+          # Get ID of Size Field and Size Option
+          getProjectVariableID 'SIZE_ID' 'Size'
+          getProjectFieldOptionID 'SIZE_OPTION_ID' 'Size' "${SIZE}"
 
-          echo ${MONTH}
-          echo ${DAY}
-          echo ${YEAR}
+          # Get ID of Department Field and Department Option
+          getProjectVariableID 'DEPARTMENT_ID' 'Department'
+          getProjectFieldOptionID 'DEPARTMENT_ID' 'Department' "${DEPARTMENT}"
+
+      - name: Add issue to project.
+        env:
+          GH_TOKEN: ${{ secrets.PROJECT_PAT_TOKEN }}
+          ITEM_ID: ${{ github.event.issue.node_id }}
+        run: |
+          source ${SCRIPT_PATH}/projectWorkflow.sh
+          
+          runGraphQLMutation 'addIssueToProject' test_data.json "$PROJECT_ID" "$ITEM_ID"
+          cat test_data.json
+          getProjectItemID test_data.json 'PROJECT_ITEM_ID'
+          echo $PROJECT_ITEM_ID
+
+      - name: Mutate issue
+        env:
+          GH_TOKEN: ${{ secrets.PROJECT_PAT_TOKEN }}
+        run: |
+          source ${SCRIPT_PATH}/projectWorkflow.sh
+
+          runGraphQLMutation 'setProjectItemPriority' set_priority.json \
+            "$PROJECT_ID" \
+            "$PROJECT_ITEM_ID" \
+            "$PRIORITY_ID" \
+            "${{env.PRIORITY_OPTION_ID}}"
+
+          runGraphQLMutation 'setProjectItemSize' set_size.json \
+            "$PROJECT_ID" \
+            "$PROJECT_ITEM_ID" \
+            "$SIZE_ID" \
+            "${{env.SIZE_OPTION_ID}}"
+
+          runGraphQLMutation 'setProjectItemDepartment' set_department.json \
+            "$PROJECT_ID" \
+            "$PROJECT_ITEM_ID" \
+            "$DEPARTMENT_ID" \
+            "${{env.DEPARTMENT_OPTION_ID}}"
+
   auto_label:
     runs-on: ubuntu-latest
     permissions:

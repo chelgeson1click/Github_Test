@@ -1,0 +1,14 @@
+mutation ($project: ID!, $item: ID!, $priorityField: ID!, $priority: String!) {
+    setPriority: updateProjectV2ItemFieldValue(input: {
+        projectId: $project
+        itemId: $item
+        fieldId: $priorityField
+        value: {
+            singleSelectOptionId: $priority
+        } 
+    }) {
+        projectV2Item {
+            id
+        }
+    }
+}

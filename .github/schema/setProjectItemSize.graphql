@@ -1,0 +1,14 @@
+mutation ($project: ID!, $item: ID!, $sizeField: ID!, $size: String!) {
+    setSize: updateProjectV2ItemFieldValue(input: {
+        projectId: $project
+        itemId: $item
+        fieldId: $sizeField
+        value: {
+            singleSelectOptionId: $size
+        } 
+    }) {
+        projectV2Item {
+            id
+        }
+    }
+}

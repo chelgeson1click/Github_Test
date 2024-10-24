@@ -13,12 +13,6 @@ jobs:
         with: 
           sparse-checkout: .github
 
-      - name: Access Issue Body as JSON
-        uses: stefanbuck/github-issue-parser@v3
-        id: issue-parser
-
-      - run: cat ${HOME}/issue-parser-result.json
-
       - name: Setup Global Variables
         env:
           SCRIPT_PATH: './.github/scripts'
