@@ -76,6 +76,8 @@ jobs:
         run: |
           source ${SCRIPT_PATH}/projectWorkflow.sh
 
+          LC_ALL=C
+
           if[ "${PRIORITY}" != "None" ]
           then
             runGraphQLMutation 'setProjectItemPriority' set_priority.json \
