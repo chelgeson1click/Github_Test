@@ -76,7 +76,8 @@ jobs:
         run: |
           source ${SCRIPT_PATH}/projectWorkflow.sh
 
-          if[ "${PRIORITY}" != "None" ]; then
+          if[ "${PRIORITY}" != "None" ]
+          then
             runGraphQLMutation 'setProjectItemPriority' set_priority.json \
               "$PROJECT_ID" \
               "$PROJECT_ITEM_ID" \
@@ -84,7 +85,8 @@ jobs:
               "${{env.PRIORITY_OPTION_ID}}"
           fi
 
-          if[ "${SIZE}" != "None" ]; then 
+          if[ "${SIZE}" != "None" ]
+          then
             runGraphQLMutation 'setProjectItemSize' set_size.json \
               "$PROJECT_ID" \
               "$PROJECT_ITEM_ID" \
@@ -92,7 +94,8 @@ jobs:
               "${{env.SIZE_OPTION_ID}}"
           fi
 
-          if[ "${DEPARTMENT}" != "None" ]; then 
+          if[ "${DEPARTMENT}" != "None" ]
+          then 
             runGraphQLMutation 'setProjectItemDepartment' set_department.json \
               "$PROJECT_ID" \
               "$PROJECT_ITEM_ID" \
