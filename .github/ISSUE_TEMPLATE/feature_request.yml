@@ -77,3 +77,12 @@ body:
         - Warehouse
         - Management
         - Customer
+  - type: dropdown
+    id: Love Sucks
+    attributes:
+      label: Love Sucks
+      multiple: true
+      options: 
+        - Test
+        - Yo
+        - Furiosa
