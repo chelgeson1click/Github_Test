@@ -78,7 +78,7 @@ body:
         - Management
         - Customer
   - type: dropdown
-    id: Love_Sucks
+    id: love
     attributes:
       label: Love Sucks
       multiple: true
