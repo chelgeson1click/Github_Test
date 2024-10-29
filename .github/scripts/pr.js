@@ -1,10 +1,14 @@
-import * as fs from 'fs';
-import * as path from 'path';
+import { readFileSync } from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 const getGraphQLQuery = ( queryName ) => {
 
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+
     const queryPath = path.join(__dirname, `${queryName}.graphql`);
-    const query = fs.readFileSync(queryPath, 'utf8');
+    const query = readFileSync(queryPath, 'utf8');
 
     return query;
 
