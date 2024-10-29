@@ -7,7 +7,8 @@ const getGraphQLQuery = ( queryName ) => {
     const __filename = fileURLToPath(import.meta.url);
     const __dirname = path.dirname(__filename);
 
-    const queryPath = path.join(__dirname, `${queryName}.graphql`);
+    const queryPath = path.join(__dirname, '..', 'schema', `${queryName}.graphql`);
+    console.log(queryPath)
     const query = readFileSync(queryPath, 'utf8');
 
     return query;
