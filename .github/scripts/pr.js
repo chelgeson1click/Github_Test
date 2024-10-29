@@ -44,11 +44,11 @@ export const getProjectInfo = async ({github}) => {
     const getProjectInfoQuery = getGraphQLQuery('getProjectInfo');
     const projectInfoResult = await github.graphql(getProjectInfoQuery);
 
-    const dataBase = getDataBase(projectData)
+    const dataBase = getDataBase(projectInfoResult)
 
-    const priorityFieldID = getProjectVariableID(projectInfoResult, 'Priority')
-    const sizeFieldID = getProjectVariableID(projectInfoResult, 'Size');
-    const departmentFieldID = getProjectVariableID(projectInfoResult, 'Department');
+    const priorityFieldID = getProjectFieldID(projectInfoResult, 'Priority')
+    const sizeFieldID = getProjectFieldID(projectInfoResult, 'Size');
+    const departmentFieldID = getProjectFieldID(projectInfoResult, 'Department');
 
     console.log(priorityFieldID);
     console.log(sizeFieldID);
