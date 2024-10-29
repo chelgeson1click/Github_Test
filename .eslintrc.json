@@ -1,9 +1,51 @@
 {
+    "root": true,
+    "env": {
+      "browser": true,
+      "node": true,
+      "es2018": true
+    },
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "ecmaVersion": 2018,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    },
+    "extends": [
+      "mdcs",
+      "plugin:@typescript-eslint/strict"
+    ],
+    "plugins": [
+      "import",
+      "@typescript-eslint"
+    ],
     "overrides": [
         {
             "files": ["*.graphql"],
             "extends": "plugin:@graphql-eslint/schema-recommended"
         }
 
-    ]
+    ],
+    "rules": {
+      "no-throw-literal": [
+        "error"
+      ],
+      "padded-blocks": "off",
+      "padding-line-between-statements": "off",
+      "@typescript-eslint/no-empty-interface": "off",
+      "@typescript-eslint/no-empty-object-type": "off",
+      "quotes": [
+        "error",
+        "single"
+      ],
+      "prefer-const": [
+        "error",
+        {
+          "destructuring": "any",
+          "ignoreReadBeforeAssign": false
+        }
+      ]
+    }
 }
