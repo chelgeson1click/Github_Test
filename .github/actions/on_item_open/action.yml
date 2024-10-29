@@ -1,0 +1,20 @@
+name: Import Dependenices on Item Open
+description: Imports and executes a suite of Marketplace actions when an item is open.
+inputs:
+  ITEM_BODY:
+    description: "Text body of the item"
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout code.
+      uses: actions/checkout@v4
+      with: 
+        sparse-checkout: .github
+
+    - name: Access Issue Body as JSON
+      uses: stefanbuck/github-issue-parser@v3
+      id: issue-parser
+
+    - name: Debug Issue Body JSON
+      run: cat ${HOME}/issue-parser-result.json

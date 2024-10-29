@@ -1,0 +1,27 @@
+name: On Item Open
+
+on:
+  workflow_call:
+    inputs: 
+      ITEM_BODY: 
+        description: Text body of the newly opened item.
+        required: true
+        type: string
+
+jobs: 
+  import_market_actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Import Checkout Action.
+        uses: actions/checkout@v4
+        with: 
+          sparse-checkout: .github
+
+      - name: Access PR Body as JSON
+        uses: stefanbuck/github-issue-parser@v3
+        id: issue-parser
+        with:
+          issue-body: ${{ inputs.ITEM_BODY }}
+
+      - name: Log PR Body
+        run: cat ${HOME}/issue-parser-result.json
