@@ -47,8 +47,11 @@ export const getIssueInfo = async({github, variables}) => {
 
     const issueData = issueInfoResult.repository.issue;
     console.log(issueData)
-    const issueProjectItems = issueData.projectItems;
+    const issueProjectItems = issueData.projectItems.nodes;
     console.log(issueProjectItems);
+    console.log(issueProjectItems.project);
+    console.log(issueProjectItems.fieldValues);
+
 
 }
 
