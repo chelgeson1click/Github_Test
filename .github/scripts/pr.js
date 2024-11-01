@@ -39,6 +39,12 @@ const getProjectFieldID = (projectData, fieldName) => {
 
 }
 
+export const getProjectID = async({github}) => {
+
+    const getProjectInfoQuery = as
+
+}
+
 export const getIssueItemID = async({github, issueItemIDVariables}) => {
     
     const getIssueInfoQuery = getGraphQLQuery('getIssueInfo');
@@ -73,14 +79,16 @@ export const getProjectFieldIDs = async({github}) => {
     const dataBase = getDataBase(projectInfoResult)
     const projectData = dataBase.projectV2;
 
+    const projectID = projectData.id;
     const priorityFieldID = getProjectFieldID(projectData, 'Priority')
     const sizeFieldID = getProjectFieldID(projectData, 'Size');
     const departmentFieldID = getProjectFieldID(projectData, 'Department');
 
+    console.log(`Project ID: ${projectID}`);
     console.log(`Priority Field ID: ${priorityFieldID}`);
     console.log(`Size Field ID: ${sizeFieldID}`);
     console.log(`Department Field ID: ${departmentFieldID}`);
 
-    return { priorityFieldID, sizeFieldID, departmentFieldID };
+    return { projectID, priorityFieldID, sizeFieldID, departmentFieldID };
 
 }
