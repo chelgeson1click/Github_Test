@@ -31,11 +31,11 @@ const getDataBase = (resultJSON) => {
 
 const getProjectFieldID = (projectData, fieldName) => {
 
-    const projectVarID = projectData.fields.nodes.find(
+    const projectField = projectData.fields.nodes.find(
         (field) => field.name === fieldName
     );
 
-    return projectVarID;
+    return projectField.id;
 
 }
 
