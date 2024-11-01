@@ -33,10 +33,22 @@ jobs:
         with:
           github-token: ${{ secrets.PROJECT_PAT_TOKEN }}
           script: |
-            const { getIssueItemID, getProjectFieldIDs } = await import('${{ github.workspace }}/.github/scripts/pr.js')
+            const { 
+              addItemToProject, 
+              getIssueItemID, 
+              getProjectFieldIDs 
+            } = await import('${{ github.workspace }}/.github/scripts/pr.js')
 
+            // Get pull request id
             const prID = '${{github.event.pull_request.node_id}}'
             console.log(`Pull Request ID: ${prID}`);
+
+            const addItemToProjectVariables = {
+              item: prID
+            };
+
+            // Add pull request to project and return pr project item id
+            addItemToProject( { github }, addItemToProjectVariables )
 
             const issueItemIDVariables = {
               issueNumber: 37,
