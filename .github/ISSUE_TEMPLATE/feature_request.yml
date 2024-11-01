@@ -85,7 +85,7 @@ body:
   - type: dropdown
     id: priority
     attributes:
-      label: Priority
+      label: Priority 
       multiple: false
       options: 
         - 🌋 Urgent

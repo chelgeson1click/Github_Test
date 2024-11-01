@@ -2,6 +2,120 @@ name: Bug Report
 description: File a reproducible bug or regression.
 labels: ['bug']
 body:
+  - type: dropdown
+    id: pages 
+    attributes: 
+      label: Affected Pages 📄
+      multiple: true
+      options: 
+        - Activity Log
+        - Add Accounts
+        - Add Item
+        - Add User
+        - Aged Orders List
+        - Audit Adjustments
+        - Audit Approvals IG
+        - Audit Approvals Non IG
+        - Audit Report
+        - Audit Tracking
+        - Assign Audits
+        - Assign Waved Picks
+        - Box Type Management
+        - Cancelled Orders
+        - Closed Orders
+        - Dashboard
+        - Damaged Goods Report
+        - Email Subscription Management
+        - Employee Hours
+        - Employee Management
+        - Employee Scheduling
+        - Empty Reserve Locations
+        - Filter Account Services
+        - Freight Scheduler
+        - Generate Labels
+        - Generate Ship Charges
+        - Group Hierarchy
+        - Groups
+        - Import Item Mapping
+        - Import Items
+        - Import Kits
+        - Import Orders
+        - Incomplete Items
+        - Inventory_Adjustment
+        - Item Mapping
+        - Kit Management
+        - Location Management
+        - LTL Staging Locations
+        - LTL Staging Status Grid
+        - Misc. Billing Charges
+        - New Billing
+        - Open Orders All Accounts
+        - Order Entry
+        - Orders Management
+        - Pack Scan
+        - Pack Status
+        - Picker Dashboard
+        - Picking Transactions
+        - Post Transactions
+        - Process Log
+        - Production Metrics
+        - Rate Checker
+        - Replenishment Report
+        - Returns Management
+        - Returns Report
+        - Roles
+        - Schedule Load
+        - Shipped By SKU
+        - Shipped Details By Packaging Type
+        - Shipped Details By SKU
+        - Stock Status
+        - Vendor Management
+        - View Accounts
+        - View Aged Orders
+        - View Items
+        - View Items Adjusted
+        - View Open Inbounds
+        - View Open Orders Picking
+        - View Open PO Details
+        - View Pending Inbounds
+        - View Pending Putaways
+        - View Picked Not Shipped
+        - View Tracking Lookup
+        - View Users
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority 
+      multiple: false
+      options: 
+        - 🌋 Urgent
+        - 🏔 High
+        - 🏕 Medium
+        - 🏝 Low
+  - type: dropdown
+    id: size
+    attributes:
+      label: Size
+      multiple: false
+      options: 
+        - 🐋 X-Large
+        - 🦑 Large
+        - 🐂 Medium
+        - 🐇 Small
+        - 🦔 Tiny
+  - type: dropdown
+    id: department
+    attributes:
+      label: Department
+      multiple: false
+      options:
+        - IT 
+        - HR
+        - Finance
+        - Operations
+        - Warehouse
+        - Management
+        - Customer
   - type: textarea
     id: graph
     attributes: 
