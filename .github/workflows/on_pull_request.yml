@@ -28,7 +28,9 @@ jobs:
       - name: Log PR Body
         run: cat ${HOME}/issue-parser-result.json
 
-      - name: Extract Issue Thing
+      -
+
+      - name: Extract Issue Fields
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.PROJECT_PAT_TOKEN }}

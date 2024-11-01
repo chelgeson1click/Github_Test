@@ -6,6 +6,8 @@ query getIssueInfo($issueNumber: Int!) {
                 nodes {
                     id
                     project {
+                        id
+                        title
                         number
                     }
                 }
