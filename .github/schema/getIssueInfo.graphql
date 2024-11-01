@@ -1,8 +1,38 @@
 query getIssueInfo($issueNumber: Int!) {
     repository(owner: "chelgeson1click", name: "Github_Test") {
-        name
         issue(number: $issueNumber) {
             id
+            projectItems(first: 10) {
+                nodes {
+                    id
+                    project {
+                        id
+                        title
+                        number
+                    }
+                    fieldValues(first: 20) {
+                        nodes {
+                            ...on ProjectV2ItemFieldDateValue {
+                                field {
+                                    ...on ProjectV2Field {
+                                        name
+                                    }
+                                    ...on ProjectV2SingleSelectField {
+                                        name
+                                    }
+                                }
+                                item {
+                                    ...on ProjectV2Item {
+                                        content {
+                                            __typename
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

@@ -44,6 +44,12 @@ export const getIssueInfo = async({github, variables}) => {
     const getIssueInfoQuery = getGraphQLQuery('getIssueInfo');
     const issueInfoResult = await github.graphql(getIssueInfoQuery, variables);
     console.log(issueInfoResult)
+
+    const issueData = issueInfoResult.repository.issue;
+    console.log(issueData)
+    const issueProjectItems = issueData.projectItems;
+    console.log(issueProjectItems);
+
 }
 
 export const getProjectInfo = async ({github}) => {
