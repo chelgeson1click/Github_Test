@@ -49,6 +49,8 @@ export const getIssueItemID = async({github, issueItemIDVariables}) => {
         (projectItem) => projectItem.project.number === 2
     )
 
+    console.log(issueCurrentProjectItem)
+
     console.log(`Issue Project Item ID: ${issueCurrentProjectItem.id}`);
 
     return issueCurrentProjectItem.id;
