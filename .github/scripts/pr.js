@@ -8,7 +8,6 @@ const getGraphQLQuery = ( queryName ) => {
     const __dirname = path.dirname(__filename);
 
     const queryPath = path.join(__dirname, '..', 'schema', `${queryName}.graphql`);
-    console.log(queryPath)
     const query = readFileSync(queryPath, 'utf8');
 
     return query;
@@ -39,12 +38,6 @@ const getProjectFieldID = (projectData, fieldName) => {
 
 }
 
-export const getProjectID = async({github}) => {
-
-    const getProjectInfoQuery = as
-
-}
-
 export const getIssueItemID = async({github, issueItemIDVariables}) => {
     
     const getIssueInfoQuery = getGraphQLQuery('getIssueInfo');
@@ -67,7 +60,7 @@ export const addItemToProject = async({github}, vars) => {
     const addItemToProjectQuery = getGraphQLQuery('addIssueToProject');
     const addItemToProjectResult = await github.graphql(addItemToProjectQuery, vars);
 
-    console.log(addItemToProjectResult)
+    return addItemToProjectResult.addProjectV2ItemById.item.id;
 
 }
 

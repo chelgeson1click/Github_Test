@@ -51,7 +51,8 @@ jobs:
             };
 
             // Add pull request to project and return pr project item id
-            addItemToProject( { github }, addItemToProjectVariables )
+            const prItemID = await addItemToProject( { github }, addItemToProjectVariables )
+            console.log(`Pull Request Project Item ID: ${prItemID}`);
 
             const issueItemIDVariables = {
               issueNumber: 37,
