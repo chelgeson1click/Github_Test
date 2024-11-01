@@ -10,6 +10,64 @@ query getIssueInfo($issueNumber: Int!) {
                         title
                         number
                     }
+                    fieldValueByName(name: "Department") {
+                        ...on ProjectV2ItemFieldDateValue            {
+                            field {
+                                __typename
+                            }
+                        }
+                        ...on ProjectV2ItemFieldIterationValue {
+                            field {
+                                __typename
+                            }
+                        }
+                        ...on ProjectV2ItemFieldLabelValue {
+                            field {
+                                __typename
+                            }
+                        }
+                        ...on ProjectV2ItemFieldMilestoneValue {
+                            field {
+                                __typename
+                            }
+                        }
+                        ...on ProjectV2ItemFieldNumberValue {
+                            field {
+                                __typename
+                            }
+                        }
+                        ...on ProjectV2ItemFieldPullRequestValue {
+                            field {
+                                __typename
+                            }
+                        }
+                        ...on ProjectV2ItemFieldRepositoryValue {
+                            field {
+                                __typename
+                            }
+                        }
+                        ...on ProjectV2ItemFieldReviewerValue {
+                            field {
+                                __typename
+                            }
+                        }
+                        ...on ProjectV2ItemFieldSingleSelectValue {
+                            field {
+                                __typename
+                            }
+                        }
+                        ...on ProjectV2ItemFieldTextValue {
+                            field {
+                                __typename
+                            }
+                        }
+                        ...on ProjectV2ItemFieldUserValue {
+                            field {
+                                __typename
+                            }
+                        }
+                        
+                    }
                 }
             }
         }

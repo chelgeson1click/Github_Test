@@ -1,0 +1,14 @@
+mutation ($project: ID!, $item: ID!, $departmentField: ID!, $department: String!) {
+    setDepartment: updateProjectV2ItemFieldValue(input: {
+        projectId: $project
+        itemId: $item
+        fieldId: $departmentField
+        value: {
+            singleSelectOptionId: $department
+        } 
+    }) {
+        projectV2Item {
+            id
+        }
+    }
+}
