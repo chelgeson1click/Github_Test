@@ -1,5 +1,6 @@
 query getIssueInfo($issueNumber: Int!) {
     repository(owner: "chelgeson1click", name: "Github_Test") {
+        name
         issue(number: $issueNumber) {
             id
         }
