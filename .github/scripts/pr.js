@@ -43,16 +43,14 @@ export const getIssueItemID = async({github, issueItemIDVariables}) => {
     
     const getIssueInfoQuery = getGraphQLQuery('getIssueInfo');
     const issueInfoResult = await github.graphql(getIssueInfoQuery, issueItemIDVariables);
-    console.log(issueInfoResult)
 
     const issueData = issueInfoResult.repository.issue;
-    console.log(issueData)
     const issueProjectItems = issueData.projectItems.nodes;
-    console.log(issueProjectItems);
     const issueCurrentProjectItem = issueProjectItems.find(
         (projectItem) => projectItem.project.number === 2
     )
-    console.log(issueCurrentProjectItem);
+
+    console.log(`Issue Project Item ID: ${issueCurrentProjectItem.id}`);
 
     return issueCurrentProjectItem.id;
 
