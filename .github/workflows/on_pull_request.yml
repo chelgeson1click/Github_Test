@@ -35,7 +35,7 @@ jobs:
           script: |
             const { getIssueItemID, getProjectFieldIDs } = await import('${{ github.workspace }}/.github/scripts/pr.js')
 
-            const prID = '${{github.event.pull_request.id}}'
+            const prID = ${{github.event.pull_request.node_id}}
             console.log(prID);
 
 
