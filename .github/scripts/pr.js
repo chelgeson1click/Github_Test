@@ -38,10 +38,10 @@ const getProjectFieldID = (projectData, fieldName) => {
 
 }
 
-export const getIssueItemID = async({github, issueItemIDVariables}) => {
+export const getIssueItemInfo = async({github}, queryVars) => {
     
     const getIssueInfoQuery = getGraphQLQuery('getIssueInfo');
-    const issueInfoResult = await github.graphql(getIssueInfoQuery, issueItemIDVariables);
+    const issueInfoResult = await github.graphql(getIssueInfoQuery, queryVars);
 
     const issueData = issueInfoResult.repository.issue;
     const issueProjectItems = issueData.projectItems.nodes;
@@ -49,11 +49,17 @@ export const getIssueItemID = async({github, issueItemIDVariables}) => {
         (projectItem) => projectItem.project.number === 2
     )
 
-    console.log(issueCurrentProjectItem)
+    const issueProjectID = issueCurrentProjectItem.id;
+    const priorityOptionID = issueCurrentProjectItem.priorityField.optionId;
+    const sizeOptionID = issueCurrentProjectItem.sizeField.optionId;
+    const departmentOptionID = issueCurrentProjectItem.departmentField.optionId;
 
-    console.log(`Issue Project Item ID: ${issueCurrentProjectItem.id}`);
+    console.log(`Issue Project Item ID: ${issueProjectID}`);
+    console.log(`Issue Priority Option: ${priorityOptionID}`);
+    console.log(`Issue Size Option: ${sizeOptionID}`)
+    console.log(`Issue Department Option: ${departmentOptionID}`);
 
-    return issueCurrentProjectItem.id;
+    return { issueProjectID, priorityOptionID, sizeOptionID, departmentOptionID };
 
 }
 

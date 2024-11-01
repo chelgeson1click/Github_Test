@@ -58,7 +58,12 @@ jobs:
               issueNumber: 37,
             }
 
-            const projectItemID = await getIssueItemID({github, issueItemIDVariables});
+            const { 
+              issueProjectID, 
+              priorityOptionID, 
+              sizeOptionID, 
+              departmentOptionID 
+            }; = await getIssueItemInfo( {github}, issueItemIDVariables );
 
 
 
