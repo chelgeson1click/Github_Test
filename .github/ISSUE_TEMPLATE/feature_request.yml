@@ -82,40 +82,6 @@ body:
         - View Picked Not Shipped
         - View Tracking Lookup
         - View Users
-  - type: dropdown
-    id: priority
-    attributes:
-      label: Priority 
-      multiple: false
-      options: 
-        - 🌋 Urgent
-        - 🏔 High
-        - 🏕 Medium
-        - 🏝 Low
-  - type: dropdown
-    id: size
-    attributes:
-      label: Size
-      multiple: false
-      options: 
-        - 🐋 X-Large
-        - 🦑 Large
-        - 🐂 Medium
-        - 🐇 Small
-        - 🦔 Tiny
-  - type: dropdown
-    id: department
-    attributes:
-      label: Department
-      multiple: false
-      options:
-        - IT 
-        - HR
-        - Finance
-        - Operations
-        - Warehouse
-        - Management
-        - Customer
   - type: textarea
     id: graph
     attributes: 
@@ -157,3 +123,37 @@ body:
       description: Add any other context about the feature request here.
     validations:
       required: false
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority 
+      multiple: false
+      options: 
+        - 🌋 Urgent
+        - 🏔 High
+        - 🏕 Medium
+        - 🏝 Low
+  - type: dropdown
+    id: size
+    attributes:
+      label: Size
+      multiple: false
+      options: 
+        - 🐋 X-Large
+        - 🦑 Large
+        - 🐂 Medium
+        - 🐇 Small
+        - 🦔 Tiny
+  - type: dropdown
+    id: department
+    attributes:
+      label: Department
+      multiple: false
+      options:
+        - IT 
+        - HR
+        - Finance
+        - Operations
+        - Warehouse
+        - Management
+        - Customer

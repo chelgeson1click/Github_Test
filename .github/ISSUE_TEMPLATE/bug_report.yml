@@ -82,6 +82,38 @@ body:
         - View Picked Not Shipped
         - View Tracking Lookup
         - View Users
+  - type: textarea
+    id: graph
+    attributes: 
+      label: Resources 
+      value: | 
+        Related Issues:
+        Related PRs:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: A clear and concise description of what the bug is.
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Reproduction steps
+      description: How do you trigger this bug? Please walk us through it step by step.
+      value: |
+        1.
+        2.
+        3.
+    validations:
+      required: true
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: If applicable, add screenshots to help explain your problem (drag and drop the image).
+    validations:
+      required: false
   - type: dropdown
     id: priority
     attributes:
@@ -116,35 +148,3 @@ body:
         - Warehouse
         - Management
         - Customer
-  - type: textarea
-    id: graph
-    attributes: 
-      label: Resources 
-      value: | 
-        Related Issues:
-        Related PRs:
-  - type: textarea
-    id: description
-    attributes:
-      label: Description
-      description: A clear and concise description of what the bug is.
-    validations:
-      required: true
-  - type: textarea
-    id: repro
-    attributes:
-      label: Reproduction steps
-      description: How do you trigger this bug? Please walk us through it step by step.
-      value: |
-        1.
-        2.
-        3.
-    validations:
-      required: true
-  - type: textarea
-    id: screenshots
-    attributes:
-      label: Screenshots
-      description: If applicable, add screenshots to help explain your problem (drag and drop the image).
-    validations:
-      required: false
