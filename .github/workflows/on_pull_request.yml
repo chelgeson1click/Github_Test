@@ -35,12 +35,13 @@ jobs:
           script: |
             const path = '${{ github.workspace }}/.github/scripts/;
             const { getIssueItemID, getProjectFieldIDs } = await import(`${path}/pr.js`)
+
+            //const prID = ${{github.event.pull_request.node_id}}
+            //console.log(prID)
+
             const itemIDVars = {
               issueNumber: 37,
             }
-
-            const prID = ${{github.event.pull_request.node_id}}
-            console.log(prID)
 
             const projectItemID = await getIssueItemID({github, itemIDVars});
             const { priorityFieldID, sizeFieldID, departmentFieldID } = await getProjectFieldIDs({github});
