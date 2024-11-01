@@ -43,8 +43,8 @@ jobs:
               issueNumber: 37,
             }
 
-            //const projectItemID = await getIssueItemID({github, itemIDVars});
-            //const { priorityFieldID, sizeFieldID, departmentFieldID } = await getProjectFieldIDs({github});
+            const projectItemID = await getIssueItemID({github, itemIDVars});
+            const { priorityFieldID, sizeFieldID, departmentFieldID } = await getProjectFieldIDs({github});
 
 
 
