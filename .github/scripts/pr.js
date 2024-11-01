@@ -55,25 +55,3 @@ export const getProjectInfo = async ({github}) => {
     console.log(departmentFieldID);
 
 }
-
-
-
-/*export const extractPrimaryIssue = async ( resourcesBody, { github, resources } ) => {
-
-    const match = text.match(/#(\d+)/);
-    console.log(`Issue: ${match[1]}`)
-
-    const getProjectInfoQuery = getGraphQLQuery('getProjectInfo');
-    const projectInfoResult = await github.graphql(getProjectInfoQuery);
-
-    const getIssueInfoVariables = {
-        issueNumber: parseInt(match[1])
-    }
-
-    const getIssueInfoQuery = getGraphQLQuery('getIssueInfo');
-    const issueInfoResult = await github.graphql(getIssueInfoQuery, getIssueInfoVariables);
-    
-    console.log(issueInfoResult);
-    console.log(projectInfoResult)
-
-} */

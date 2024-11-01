@@ -21,17 +21,12 @@
       "import",
       "@typescript-eslint"
     ],
-    "overrides": [
-        {
-            "files": ["*.graphql"],
-            "extends": "plugin:@graphql-eslint/schema-recommended"
-        }
-
-    ],
     "rules": {
       "no-throw-literal": [
         "error"
       ],
+      "indent": ["error", 4],
+      "no-tabs": "error",
       "padded-blocks": "off",
       "padding-line-between-statements": "off",
       "@typescript-eslint/no-empty-interface": "off",
