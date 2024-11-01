@@ -35,7 +35,7 @@ jobs:
           script: |
             const { getIssueInfo } = await import('${{ github.workspace }}/.github/scripts/pr.js')
             const variables = {
-              issueNumber: 42,
+              issueNumber: 37,
             }
 
             await getIssueInfo({github, variables})
