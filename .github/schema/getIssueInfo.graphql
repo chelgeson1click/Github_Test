@@ -55,6 +55,8 @@ query getIssueInfo($issueNumber: Int!) {
                             field {
                                 __typename
                             }
+                            description
+                            optionId
                         }
                         ...on ProjectV2ItemFieldTextValue {
                             field {
