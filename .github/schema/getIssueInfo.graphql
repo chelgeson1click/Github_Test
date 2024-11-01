@@ -20,6 +20,12 @@ query getIssueInfo($issueNumber: Int!) {
                                     ...on ProjectV2SingleSelectField {
                                         name
                                     }
+                                    ...on ProjectV2FieldCommon {
+                                        name
+                                    }
+                                    ...on ProjectV2IterationField {
+                                        name
+                                    }
                                 }
                                 item {
                                     ...on ProjectV2Item {
