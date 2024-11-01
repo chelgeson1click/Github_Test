@@ -39,6 +39,13 @@ const getProjectFieldID = (projectData, fieldName) => {
 
 }
 
+export const getIssueInfo = async({github}) => {
+    const getIssueInfoQuery = getGraphQLQuery('getIssueInfo');
+    const issueInfoResult = await github.graphql(getIssueInfoQuery);
+    const dataBase = getDataBase(issueInfoResult);
+    console.log(dataBase)
+}
+
 export const getProjectInfo = async ({github}) => {
 
     const getProjectInfoQuery = getGraphQLQuery('getProjectInfo');

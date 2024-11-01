@@ -27,8 +27,15 @@ jobs:
 
       - name: Log PR Body
         run: cat ${HOME}/issue-parser-result.json
+      
+      - name: Extract Issue Project ID
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.PROJECT_PAT_TOKEN }}
+          script: |
+            const { getIssueInfo } = await import('${{ github.workspace }}/.github/scripts/pr.js')
 
-      -
+            await getIssueInfo({github})
 
       - name: Extract Issue Fields
         uses: actions/github-script@v7
