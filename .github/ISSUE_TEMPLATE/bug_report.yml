@@ -148,37 +148,3 @@ body:
       description: If applicable, add screenshots to help explain your problem (drag and drop the image).
     validations:
       required: false
-  - type: dropdown
-    id: priority
-    attributes:
-      label: Priority
-      multiple: false
-      options: 
-        - 🌋 Urgent
-        - 🏔 High
-        - 🏕 Medium
-        - 🏝 Low
-  - type: dropdown
-    id: size
-    attributes:
-      label: Size
-      multiple: false
-      options: 
-        - 🐋 X-Large
-        - 🦑 Large
-        - 🐂 Medium
-        - 🐇 Small
-        - 🦔 Tiny
-  - type: dropdown
-    id: department
-    attributes:
-      label: Department
-      multiple: false
-      options:
-        - IT 
-        - HR
-        - Finance
-        - Operations
-        - Warehouse
-        - Management
-        - Customer
