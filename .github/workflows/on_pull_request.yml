@@ -34,10 +34,11 @@ jobs:
           github-token: ${{ secrets.PROJECT_PAT_TOKEN }}
           script: |
             const path = '${{ github.workspace }}/.github/scripts/;
-            const { getIssueItemID, getProjectFieldIDs } = await import(`${path}/pr.js`)
+            const { getIssueItemID, getProjectFieldIDs } = await import(`${path}pr.js`)
 
-            //const prID = ${{github.event.pull_request.node_id}}
-            //console.log(prID)
+            const prID = '${{github.event.pull_request.id}}'
+            console.log(prID);
+
 
             const itemIDVars = {
               issueNumber: 37,
