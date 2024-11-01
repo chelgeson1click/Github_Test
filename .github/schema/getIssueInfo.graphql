@@ -2,17 +2,6 @@ query getIssueInfo($issueNumber: Int!) {
     repository(owner: "chelgeson1click", name: "Github_Test") {
         issue(number: $issueNumber) {
             id
-            projectItems(first: 10) {
-                nodes {
-                    id
-                    project {
-                        id
-                        title
-                        number
-                    }
-                }
-            }
         }
-
     }
 }
