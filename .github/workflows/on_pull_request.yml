@@ -72,21 +72,21 @@ jobs:
 
             const priorityVars = {
               project: projectID,
-              item: prID,
+              item: prItemID,
               priorityField: priorityFieldID,
               priority: priorityOptionID
             };
 
             const sizeVars = {
               project: projectID,
-              item: prID,
+              item: prItemID,
               sizeField: sizeFieldID,
               size: sizeOptionID
             };
 
             const departmentVars = {
               project: projectID,
-              item: prID,
+              item: prItemID,
               departmentField: departmentFieldID,
               department: departmentOptionID
             };
