@@ -33,20 +33,20 @@ jobs:
         with:
           github-token: ${{ secrets.PROJECT_PAT_TOKEN }}
           script: |
-            const { getIssueInfo } = await import('${{ github.workspace }}/.github/scripts/pr.js')
+            const { getIssueItemID } = await import('${{ github.workspace }}/.github/scripts/pr.js')
             const variables = {
               issueNumber: 37,
             }
 
-            await getIssueInfo({github, variables})
+            await getIssueItemID({github, variables})
 
       - name: Extract Issue Fields
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.PROJECT_PAT_TOKEN }}
           script: |
-            const { getProjectInfo } = await import('${{ github.workspace }}/.github/scripts/pr.js')
+            const { getProjectFieldIDs } = await import('${{ github.workspace }}/.github/scripts/pr.js')
 
-            await getProjectInfo({github})
+            await getProjectFieldIDs({github})
 
 

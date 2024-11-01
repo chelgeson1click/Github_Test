@@ -39,7 +39,7 @@ const getProjectFieldID = (projectData, fieldName) => {
 
 }
 
-export const getIssueInfo = async({github, variables}) => {
+export const getIssueItemID = async({github, variables}) => {
     
     const getIssueInfoQuery = getGraphQLQuery('getIssueInfo');
     const issueInfoResult = await github.graphql(getIssueInfoQuery, variables);
@@ -55,11 +55,11 @@ export const getIssueInfo = async({github, variables}) => {
     console.log(issueCurrentProjectItems);
     console.log(issueCurrentProjectItems.project);
     console.log(issueCurrentProjectItems.fieldValues);
-
+    console.log(issueCurrentProjectItems.fieldValues.nodes)
 
 }
 
-export const getProjectInfo = async ({github}) => {
+export const getProjectFieldIDs = async ({github}) => {
 
     const getProjectInfoQuery = getGraphQLQuery('getProjectInfo');
     const projectInfoResult = await github.graphql(getProjectInfoQuery);
@@ -74,5 +74,7 @@ export const getProjectInfo = async ({github}) => {
     console.log(`Priority Field ID: ${priorityFieldID}`);
     console.log(`Size Field ID: ${sizeFieldID}`);
     console.log(`Department Field ID: ${departmentFieldID}`);
+
+    return { priorityFieldID, sizeFieldID, departmentFieldID };
 
 }
