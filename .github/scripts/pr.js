@@ -39,7 +39,7 @@ const getProjectFieldID = (projectData, fieldName) => {
 
 }
 
-export const getIssueItemID = async({github, variables}) => {
+export const getIssueItemID = async({github, issueItemIDVariables}) => {
     
     const getIssueInfoQuery = getGraphQLQuery('getIssueInfo');
     console.log(variables)

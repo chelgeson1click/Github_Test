@@ -39,11 +39,11 @@ jobs:
             console.log(prID);
 
 
-            const itemIDVars = {
+            const issueItemIDVariables = {
               issueNumber: 37,
             }
 
-            const projectItemID = await getIssueItemID({github, itemIDVars});
+            const projectItemID = await getIssueItemID({github, issueItemIDVariables});
             const { priorityFieldID, sizeFieldID, departmentFieldID } = await getProjectFieldIDs({github});
 
 
