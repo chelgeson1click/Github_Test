@@ -39,6 +39,7 @@ jobs:
               getProjectFieldIDs 
             } = await import('${{ github.workspace }}/.github/scripts/pr.js')
 
+            // Get project fields
             const { projectID, priorityFieldID, sizeFieldID, departmentFieldID } = await getProjectFieldIDs({github});
 
             // Get pull request id
@@ -58,12 +59,13 @@ jobs:
               issueNumber: 37,
             }
 
+            // Get relevant info from the issue
             const { 
               issueProjectID, 
               priorityOptionID, 
               sizeOptionID, 
               departmentOptionID 
-            }; = await getIssueItemInfo( {github}, issueItemIDVariables );
+            } = await getIssueItemInfo( {github}, issueItemIDVariables );
 
 
 
