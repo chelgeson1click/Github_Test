@@ -46,6 +46,8 @@ export const getProjectInfo = async ({github}) => {
 
     const dataBase = getDataBase(projectInfoResult)
 
+    console.log(dataBase);
+
     const priorityFieldID = getProjectFieldID(projectInfoResult, 'Priority')
     const sizeFieldID = getProjectFieldID(projectInfoResult, 'Size');
     const departmentFieldID = getProjectFieldID(projectInfoResult, 'Department');
