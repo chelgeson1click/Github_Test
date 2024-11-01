@@ -36,7 +36,10 @@ jobs:
             const { 
               addItemToProject, 
               getIssueItemInfo, 
-              getProjectFieldIDs 
+              getProjectFieldIDs,
+              setProjectItemPriority,
+              setProjectItemSize,
+              setProjectItemDepartment
             } = await import('${{ github.workspace }}/.github/scripts/pr.js')
 
             // Get project fields
@@ -66,6 +69,31 @@ jobs:
               sizeOptionID, 
               departmentOptionID 
             } = await getIssueItemInfo( {github}, issueItemIDVariables );
+
+            const priorityVars = {
+              project: projectID,
+              item: prID,
+              priorityField: priorityFieldID,
+              priority: priorityOptionID
+            };
+
+            const sizeVars = {
+              project: projectID,
+              item: prID,
+              sizeField: sizeFieldID,
+              size: sizeOptionID
+            };
+
+            const departmentVars = {
+              project: projectID,
+              item: prID,
+              departmentField: departmentFieldID,
+              department: departmentOptionID
+            };
+
+            await setProjectItemPriority({github}, priorityVars)
+            await setProjectItemSize({github}, sizeVars);
+            await setProjectItemDepartment({github}, departmentVars)
 
 
 

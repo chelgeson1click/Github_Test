@@ -93,3 +93,26 @@ export const getProjectFieldIDs = async({github}) => {
     return { projectID, priorityFieldID, sizeFieldID, departmentFieldID };
 
 }
+
+export const setProjectItemPriority = async({github}, mutationVars) => {
+
+    const setProjectItemPriorityMutation = getGraphQLQuery('setProjectItemPriority');
+    await github.graphql(setProjectItemPriorityMutation, mutationVars);
+
+
+}
+
+export const setProjectItemSize = async({github}, mutationVars) => {
+
+    const setProjectItemSizeMutation = getGraphQLQuery('setProjectItemSize')
+    await github.graphql(setProjectItemSizeMutation, mutationVars);
+
+
+}
+
+export const setProjectItemDepartment = async({github}, mutationVars) => {
+
+    const setProjectItemDepartmentMutation = getGraphQLQuery('setProjectItemDepartment');
+    await github.graphql(setProjectItemDepartmentMutation, mutationVars);
+
+}
