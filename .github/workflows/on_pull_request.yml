@@ -59,7 +59,7 @@ jobs:
             console.log(`Pull Request Project Item ID: ${prItemID}`);
 
             const issueItemIDVariables = {
-              issueNumber: 37,
+              issueNumber: 52,
             }
 
             // Get relevant info from the issue
