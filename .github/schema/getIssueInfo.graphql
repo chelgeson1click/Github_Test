@@ -10,33 +10,6 @@ query getIssueInfo($issueNumber: Int!) {
                         title
                         number
                     }
-                    fieldValues(first: 20) {
-                        nodes {
-                            ...on ProjectV2ItemFieldDateValue {
-                                field {
-                                    ...on ProjectV2Field {
-                                        name
-                                    }
-                                    ...on ProjectV2SingleSelectField {
-                                        name
-                                    }
-                                    ...on ProjectV2FieldCommon {
-                                        name
-                                    }
-                                    ...on ProjectV2IterationField {
-                                        name
-                                    }
-                                }
-                                item {
-                                    ...on ProjectV2Item {
-                                        content {
-                                            __typename
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
                 }
             }
         }

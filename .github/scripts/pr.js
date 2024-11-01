@@ -49,13 +49,12 @@ export const getIssueItemID = async({github, variables}) => {
     console.log(issueData)
     const issueProjectItems = issueData.projectItems.nodes;
     console.log(issueProjectItems);
-    const issueCurrentProjectItems = issueProjectItems.find(
+    const issueCurrentProjectItem = issueProjectItems.find(
         (projectItem) => projectItem.project.number === 2
     )
-    console.log(issueCurrentProjectItems);
-    console.log(issueCurrentProjectItems.project);
-    console.log(issueCurrentProjectItems.fieldValues);
-    console.log(issueCurrentProjectItems.fieldValues.nodes)
+    console.log(issueCurrentProjectItem);
+
+    return issueCurrentProjectItem.id;
 
 }
 
