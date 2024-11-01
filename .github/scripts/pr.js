@@ -50,7 +50,7 @@ export const getIssueInfo = async({github, variables}) => {
     const issueProjectItems = issueData.projectItems.nodes;
     console.log(issueProjectItems);
     const issueCurrentProjectItems = issueProjectItems.find(
-        (projectItem) => projectItem.number === 2
+        (projectItem) => projectItem.project.number === 2
     )
     console.log(issueCurrentProjectItems);
     console.log(issueCurrentProjectItems.project);
