@@ -59,6 +59,9 @@ jobs:
             const prItemID = await addItemToProject( { github }, addItemToProjectVariables )
             console.log(`Pull Request Project Item ID: ${prItemID}`);
 
+
+            const relevantIssueText = "${{steps.issue-parser.outputs.issueparser_priority }}"
+            console.log(relevantIssueText)
             const issueNumber = getIssueNumberFromPRBody("${{steps.issue-parser.outputs.issueparser_priority }}")
 
             if (issueNumber === 0) {
