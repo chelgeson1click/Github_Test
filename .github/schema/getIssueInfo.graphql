@@ -6,11 +6,27 @@ query getIssueInfo($issueNumber: Int!) {
                 nodes {
                     id
                     project {
+                        id
+                        title
                         number
+                    }
+                    priorityField: fieldValueByName(name: "Priority") {
+                         ...on ProjectV2ItemFieldSingleSelectValue {
+                            optionId
+                        }
+                    }
+                    sizeField: fieldValueByName(name: "Size") {
+                        ...on ProjectV2ItemFieldSingleSelectValue {
+                            optionId
+                        }
+                    }
+                    departmentField: fieldValueByName(name: "Department") {
+                        ...on ProjectV2ItemFieldSingleSelectValue {
+                            optionId
+                        }
                     }
                 }
             }
         }
-
     }
 }

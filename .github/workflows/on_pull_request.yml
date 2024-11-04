@@ -2,7 +2,7 @@ name: Modify Pull Request
 
 on:
   pull_request:
-    types: [opened]
+    types: [opened, synchronize]
 
 jobs: 
   call_on_item_open:
@@ -27,14 +27,76 @@ jobs:
 
       - name: Log PR Body
         run: cat ${HOME}/issue-parser-result.json
-
-      - name: Extract Issue Thing
+      
+      - name: Extract Issue Project ID and Project Fields
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.PROJECT_PAT_TOKEN }}
           script: |
-            const { getProjectInfo } = await import('${{ github.workspace }}/.github/scripts/pr.js')
+            const { 
+              addItemToProject, 
+              getIssueItemInfo, 
+              getProjectFieldIDs,
+              setProjectItemPriority,
+              setProjectItemSize,
+              setProjectItemDepartment
+            } = await import('${{ github.workspace }}/.github/scripts/pr.js')
 
-            await getProjectInfo({github})
+            // Get project fields
+            const { projectID, priorityFieldID, sizeFieldID, departmentFieldID } = await getProjectFieldIDs({github});
+
+            // Get pull request id
+            const prID = '${{github.event.pull_request.node_id}}'
+            console.log(`Pull Request ID: ${prID}`);
+
+            const addItemToProjectVariables = {
+              project: projectID,
+              item: prID
+            };
+
+            // Add pull request to project and return pr project item id
+            const prItemID = await addItemToProject( { github }, addItemToProjectVariables )
+            console.log(`Pull Request Project Item ID: ${prItemID}`);
+
+            const issueItemIDVariables = {
+              issueNumber: 52,
+            }
+
+            // Get relevant info from the issue
+            const { 
+              issueProjectID, 
+              priorityOptionID, 
+              sizeOptionID, 
+              departmentOptionID 
+            } = await getIssueItemInfo( {github}, issueItemIDVariables );
+
+            const priorityVars = {
+              project: projectID,
+              item: prItemID,
+              priorityField: priorityFieldID,
+              priority: priorityOptionID
+            };
+
+            const sizeVars = {
+              project: projectID,
+              item: prItemID,
+              sizeField: sizeFieldID,
+              size: sizeOptionID
+            };
+
+            const departmentVars = {
+              project: projectID,
+              item: prItemID,
+              departmentField: departmentFieldID,
+              department: departmentOptionID
+            };
+
+            await setProjectItemPriority({github}, priorityVars)
+            await setProjectItemSize({github}, sizeVars);
+            await setProjectItemDepartment({github}, departmentVars)
+
+
+
+
 
 

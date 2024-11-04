@@ -8,7 +8,6 @@ const getGraphQLQuery = ( queryName ) => {
     const __dirname = path.dirname(__filename);
 
     const queryPath = path.join(__dirname, '..', 'schema', `${queryName}.graphql`);
-    console.log(queryPath)
     const query = readFileSync(queryPath, 'utf8');
 
     return query;
@@ -31,49 +30,89 @@ const getDataBase = (resultJSON) => {
 
 const getProjectFieldID = (projectData, fieldName) => {
 
-    const projectVarID = projectData.fields.nodes.find(
+    const projectField = projectData.fields.nodes.find(
         (field) => field.name === fieldName
     );
 
-    return projectVarID;
+    return projectField.id;
 
 }
 
-export const getProjectInfo = async ({github}) => {
+export const getIssueItemInfo = async({github}, queryVars) => {
+    
+    const getIssueInfoQuery = getGraphQLQuery('getIssueInfo');
+    const issueInfoResult = await github.graphql(getIssueInfoQuery, queryVars);
+
+    const issueData = issueInfoResult.repository.issue;
+    const issueProjectItems = issueData.projectItems.nodes;
+    const issueCurrentProjectItem = issueProjectItems.find(
+        (projectItem) => projectItem.project.number === 2
+    )
+
+    const issueProjectID = issueCurrentProjectItem.id;
+    const priorityOptionID = issueCurrentProjectItem.priorityField.optionId;
+    const sizeOptionID = issueCurrentProjectItem.sizeField.optionId;
+    const departmentOptionID = issueCurrentProjectItem.departmentField.optionId;
+
+    console.log(`Issue Project Item ID: ${issueProjectID}`);
+    console.log(`Issue Priority Option: ${priorityOptionID}`);
+    console.log(`Issue Size Option: ${sizeOptionID}`)
+    console.log(`Issue Department Option: ${departmentOptionID}`);
+
+    return { issueProjectID, priorityOptionID, sizeOptionID, departmentOptionID };
+
+}
+
+export const addItemToProject = async({github}, vars) => {
+
+    const addItemToProjectQuery = getGraphQLQuery('addIssueToProject');
+    const addItemToProjectResult = await github.graphql(addItemToProjectQuery, vars);
+
+    return addItemToProjectResult.addProjectV2ItemById.item.id;
+
+}
+
+export const getProjectFieldIDs = async({github}) => {
 
     const getProjectInfoQuery = getGraphQLQuery('getProjectInfo');
     const projectInfoResult = await github.graphql(getProjectInfoQuery);
 
     const dataBase = getDataBase(projectInfoResult)
+    const projectData = dataBase.projectV2;
 
-    const priorityFieldID = getProjectFieldID(projectInfoResult, 'Priority')
-    const sizeFieldID = getProjectFieldID(projectInfoResult, 'Size');
-    const departmentFieldID = getProjectFieldID(projectInfoResult, 'Department');
+    const projectID = projectData.id;
+    const priorityFieldID = getProjectFieldID(projectData, 'Priority')
+    const sizeFieldID = getProjectFieldID(projectData, 'Size');
+    const departmentFieldID = getProjectFieldID(projectData, 'Department');
 
-    console.log(priorityFieldID);
-    console.log(sizeFieldID);
-    console.log(departmentFieldID);
+    console.log(`Project ID: ${projectID}`);
+    console.log(`Priority Field ID: ${priorityFieldID}`);
+    console.log(`Size Field ID: ${sizeFieldID}`);
+    console.log(`Department Field ID: ${departmentFieldID}`);
+
+    return { projectID, priorityFieldID, sizeFieldID, departmentFieldID };
 
 }
 
+export const setProjectItemPriority = async({github}, mutationVars) => {
+
+    const setProjectItemPriorityMutation = getGraphQLQuery('setProjectItemPriority');
+    await github.graphql(setProjectItemPriorityMutation, mutationVars);
 
 
-/*export const extractPrimaryIssue = async ( resourcesBody, { github, resources } ) => {
+}
 
-    const match = text.match(/#(\d+)/);
-    console.log(`Issue: ${match[1]}`)
+export const setProjectItemSize = async({github}, mutationVars) => {
 
-    const getProjectInfoQuery = getGraphQLQuery('getProjectInfo');
-    const projectInfoResult = await github.graphql(getProjectInfoQuery);
+    const setProjectItemSizeMutation = getGraphQLQuery('setProjectItemSize')
+    await github.graphql(setProjectItemSizeMutation, mutationVars);
 
-    const getIssueInfoVariables = {
-        issueNumber: parseInt(match[1])
-    }
 
-    const getIssueInfoQuery = getGraphQLQuery('getIssueInfo');
-    const issueInfoResult = await github.graphql(getIssueInfoQuery, getIssueInfoVariables);
-    
-    console.log(issueInfoResult);
-    console.log(projectInfoResult)
+}
 
-} */
+export const setProjectItemDepartment = async({github}, mutationVars) => {
+
+    const setProjectItemDepartmentMutation = getGraphQLQuery('setProjectItemDepartment');
+    await github.graphql(setProjectItemDepartmentMutation, mutationVars);
+
+}
