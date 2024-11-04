@@ -39,7 +39,8 @@ jobs:
               getProjectFieldIDs,
               setProjectItemPriority,
               setProjectItemSize,
-              setProjectItemDepartment
+              setProjectItemDepartment,
+              getIssueNumberFromPRBody
             } = await import('${{ github.workspace }}/.github/scripts/pr.js')
 
             // Get project fields
