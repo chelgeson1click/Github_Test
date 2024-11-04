@@ -28,6 +28,21 @@ const getDataBase = (resultJSON) => {
 
 }
 
+const getIssueNumberFromPRBody = (relatedIssuesString) => {
+    
+    const issueNumber = relatedIssuesString.match(/#(\d+)/);
+
+    if (issueNumber[1] === undefined) {
+
+        return 0;
+
+    } else {
+        
+        return parseInt(issueNumber[1]);
+    }
+
+}
+
 const getProjectFieldID = (projectData, fieldName) => {
 
     const projectField = projectData.fields.nodes.find(
