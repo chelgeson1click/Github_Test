@@ -62,8 +62,8 @@ jobs:
 
             const relevantIssueText = "${{steps.issue-parser.outputs.issueparser_relevant_issue }}"
             console.log(relevantIssueText)
-            //const issueNumber = getIssueNumberFromPRBody("${{steps.issue-parser.outputs.issueparser_relevant_issue }}")
-            const issueNumber = 0;
+            const issueNumber = getIssueNumberFromPRBody("${{steps.issue-parser.outputs.issueparser_relevant_issue }}")
+
             if (issueNumber === 0) {
 
                 return;

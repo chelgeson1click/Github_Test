@@ -31,6 +31,7 @@ const getDataBase = (resultJSON) => {
 export const getIssueNumberFromPRBody = (relatedIssuesString) => {
     
     const issueNumber = relatedIssuesString.match(/#(\d+)/);
+    console.log(issueNumber)
 
     if (issueNumber[1] === undefined) {
 
