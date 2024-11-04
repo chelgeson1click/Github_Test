@@ -60,9 +60,9 @@ jobs:
             console.log(`Pull Request Project Item ID: ${prItemID}`);
 
 
-            const relevantIssueText = "${{steps.issue-parser.outputs.issueparser_priority }}"
+            const relevantIssueText = "${{steps.issue-parser.outputs.issueparser_relevant_issue }}"
             console.log(relevantIssueText)
-            const issueNumber = getIssueNumberFromPRBody("${{steps.issue-parser.outputs.issueparser_priority }}")
+            const issueNumber = getIssueNumberFromPRBody("${{steps.issue-parser.outputs.issueparser_relevant_issue }}")
 
             if (issueNumber === 0) {
 
